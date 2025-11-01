@@ -2,100 +2,188 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Bot } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Bot, Info, Loader2 } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { useToast } from "@/hooks/use-toast";
 
 const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const { toast } = useToast();
 
-  const handleSignup = (e: React.FormEvent) => {
+  const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Frontend only - would connect to backend later
-    console.log("Signup attempt:", { name, email, password });
+    setIsLoading(true);
+
+    try {
+      // Simulate API call - Replace with your actual API endpoint
+      const response = await fetch("https://your-api-endpoint.com/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password })
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Account created!",
+          description: "Welcome to Proptr. Let's create your digital twin.",
+        });
+        setTimeout(() => navigate("/wizard"), 1000);
+      } else {
+        throw new Error("Signup failed");
+      }
+    } catch (error) {
+      // For demo purposes, simulate successful signup
+      console.log("Signup attempt:", { name, email, password });
+      toast({
+        title: "Demo Mode",
+        description: "Account created! (Frontend only)",
+      });
+      setTimeout(() => navigate("/wizard"), 1000);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-background relative overflow-hidden flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 relative overflow-hidden flex items-center justify-center p-6">
       {/* Animated background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-[120px] animate-pulse delay-1000" />
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[150px] animate-pulse" style={{ animationDelay: "1s" }} />
       </div>
 
-      <Card className="relative z-10 w-full max-w-md p-8 bg-gradient-to-br from-card/90 to-card/60 backdrop-blur-xl border-border/50 shadow-2xl shadow-primary/10">
-        <div className="flex flex-col items-center mb-8">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-4">
-            <Bot className="w-8 h-8 text-primary-foreground" />
-          </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            Create Account
-          </h1>
-          <p className="text-muted-foreground mt-2">Start building your digital twin</p>
-        </div>
-
-        <form onSubmit={handleSignup} className="space-y-6">
-          <div className="space-y-2">
-            <Label htmlFor="name">Full Name</Label>
-            <Input
-              id="name"
-              type="text"
-              placeholder="Alex Johnson"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="bg-background/50 border-border/50 focus:border-primary h-12"
-              required
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="you@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="bg-background/50 border-border/50 focus:border-primary h-12"
-              required
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
-            <Input
-              id="password"
-              type="password"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="bg-background/50 border-border/50 focus:border-primary h-12"
-              required
-            />
-          </div>
-
-          <Button
-            type="submit"
-            className="w-full bg-gradient-to-r from-primary to-accent hover:opacity-90 shadow-lg shadow-primary/30 h-12 text-lg"
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <Card className="relative z-10 w-full max-w-md p-10 rounded-[2.5rem] bg-card/95 backdrop-blur-2xl border-border/50 shadow-2xl">
+          <motion.div 
+            className="flex flex-col items-center mb-10"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
           >
-            Create Account
-          </Button>
+            <div className="w-20 h-20 rounded-[2rem] bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-6 shadow-lg shadow-primary/30">
+              <Bot className="w-10 h-10 text-primary-foreground" />
+            </div>
+            <h1 className="text-4xl font-bold mb-2">Create Account</h1>
+            <p className="text-muted-foreground">Start building your digital twin</p>
+          </motion.div>
 
-          <div className="text-center space-y-2">
-            <p className="text-sm text-muted-foreground">
-              Already have an account?{" "}
-              <Link to="/login" className="text-primary hover:text-accent transition-colors font-medium">
-                Sign in
+          <form onSubmit={handleSignup} className="space-y-6">
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <Label htmlFor="name" className="text-base">Full Name</Label>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <Info className="w-4 h-4 text-muted-foreground" />
+                    </TooltipTrigger>
+                    <TooltipContent className="rounded-2xl">
+                      <p>Your professional name</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+              <Input
+                id="name"
+                type="text"
+                placeholder="Alex Johnson"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="h-14 rounded-2xl bg-background/50 border-border/50 focus:border-primary text-base"
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <Label htmlFor="email" className="text-base">Email</Label>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <Info className="w-4 h-4 text-muted-foreground" />
+                    </TooltipTrigger>
+                    <TooltipContent className="rounded-2xl">
+                      <p>We'll send confirmation to this email</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+              <Input
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="h-14 rounded-2xl bg-background/50 border-border/50 focus:border-primary text-base"
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <Label htmlFor="password" className="text-base">Password</Label>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <Info className="w-4 h-4 text-muted-foreground" />
+                    </TooltipTrigger>
+                    <TooltipContent className="rounded-2xl">
+                      <p>At least 8 characters</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="h-14 rounded-2xl bg-background/50 border-border/50 focus:border-primary text-base"
+                required
+                minLength={8}
+              />
+            </div>
+
+            <Button
+              type="submit"
+              disabled={isLoading}
+              className="w-full h-14 rounded-2xl text-lg bg-gradient-to-r from-primary to-accent hover:opacity-90 shadow-lg shadow-primary/30 transition-all duration-300 hover:scale-[1.02]"
+            >
+              {isLoading ? (
+                <>
+                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  Creating Account...
+                </>
+              ) : (
+                "Create Account"
+              )}
+            </Button>
+
+            <div className="text-center space-y-4 pt-4">
+              <p className="text-muted-foreground">
+                Already have an account?{" "}
+                <Link to="/login" className="text-primary hover:text-accent transition-colors font-semibold">
+                  Sign in
+                </Link>
+              </p>
+              <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors block">
+                ← Back to home
               </Link>
-            </p>
-            <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors block">
-              Back to home
-            </Link>
-          </div>
-        </form>
-      </Card>
+            </div>
+          </form>
+        </Card>
+      </motion.div>
     </div>
   );
 };

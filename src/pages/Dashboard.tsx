@@ -1,9 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Bot, Download, ExternalLink, LogOut, Plus, QrCode } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Bot, Plus, QrCode, Download, Eye, Settings, LogOut, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import QRCode from "react-qr-code";
+import { motion } from "framer-motion";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import dashboardPreview from "@/assets/dashboard-preview.jpg";
 
 interface DigitalTwin {
   id: string;
