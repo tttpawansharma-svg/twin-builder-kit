@@ -47,12 +47,12 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/10">
-      {/* Apple-style Navigation */}
+    <div className="min-h-screen bg-gradient-to-br from-[hsl(220,25%,97%)] via-[hsl(210,40%,96%)] to-[hsl(213,94%,98%)]">
+      {/* Premium Navigation */}
       <motion.nav
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="border-b border-border/30 backdrop-blur-3xl bg-background/60 sticky top-0 z-50 shadow-sm"
+        className="border-b border-white/20 backdrop-blur-[40px] bg-white/40 sticky top-0 z-50 shadow-soft"
       >
         <div className="container mx-auto px-8 py-5 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group">
@@ -153,10 +153,10 @@ const Dashboard = () => {
                 key={twin.id}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 + index * 0.1, duration: 0.5 }}
-                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ delay: 0.6 + index * 0.1, duration: 0.6, type: "spring" }}
+                whileHover={{ y: -12, scale: 1.03 }}
               >
-                <Card className="relative overflow-hidden p-8 bg-gradient-to-br from-card via-card to-card/80 backdrop-blur-2xl border border-border/40 hover:border-primary/30 rounded-[2rem] shadow-xl hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 group">
+                <Card className="relative overflow-hidden p-10 bg-gradient-to-br from-white/95 via-white/90 to-white/85 backdrop-blur-[40px] border border-white/50 hover:border-primary/40 rounded-[2.5rem] shadow-soft hover:shadow-elegant transition-all duration-500 group">
                   {/* Subtle gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 

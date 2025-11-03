@@ -62,12 +62,12 @@ const Chatbot = () => {
   }, [messages]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/10 flex flex-col">
-      {/* Apple-style Header */}
+    <div className="min-h-screen bg-gradient-to-br from-[hsl(220,25%,97%)] via-[hsl(210,40%,96%)] to-[hsl(213,94%,98%)] flex flex-col">
+      {/* Premium Header */}
       <motion.div
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="border-b border-border/30 backdrop-blur-3xl bg-background/60 sticky top-0 z-50 shadow-sm"
+        className="border-b border-white/20 backdrop-blur-[40px] bg-white/40 sticky top-0 z-50 shadow-soft"
       >
         <div className="container mx-auto px-8 py-5">
           <div className="flex items-center justify-between">
@@ -126,10 +126,10 @@ const Chatbot = () => {
                     )}
                   </motion.div>
                   <Card
-                    className={`p-5 max-w-[75%] rounded-[1.5rem] border shadow-lg transition-all duration-300 ${
+                    className={`p-6 max-w-[75%] rounded-[2rem] border shadow-soft transition-all duration-300 ${
                       message.role === "assistant"
-                        ? "bg-gradient-to-br from-card via-card to-card/80 backdrop-blur-2xl border-border/30 hover:shadow-xl hover:shadow-primary/10"
-                        : "bg-gradient-to-br from-muted/80 to-muted/60 backdrop-blur-xl border-border/20 hover:shadow-xl"
+                        ? "bg-gradient-to-br from-white/95 via-white/90 to-white/85 backdrop-blur-[40px] border-white/50 hover:shadow-elegant hover:border-primary/30"
+                        : "bg-gradient-to-br from-primary/10 to-accent/10 backdrop-blur-[40px] border-white/40 hover:shadow-soft"
                     }`}
                   >
                     <p className="text-foreground leading-relaxed text-[15px]">{message.content}</p>
@@ -145,16 +145,16 @@ const Chatbot = () => {
         </div>
       </ScrollArea>
 
-      {/* Input Area */}
+      {/* Premium Input Area */}
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.3 }}
-        className="border-t border-border/30 backdrop-blur-3xl bg-background/60 sticky bottom-0 shadow-lg"
+        className="border-t border-white/20 backdrop-blur-[40px] bg-white/40 sticky bottom-0 shadow-elegant"
       >
         <div className="container mx-auto px-8 py-6">
           <div className="max-w-4xl mx-auto">
-            <div className="flex items-center gap-4 p-2 rounded-[1.5rem] bg-gradient-to-br from-card via-card to-card/80 border border-border/30 shadow-xl">
+            <div className="flex items-center gap-4 p-3 rounded-[2rem] bg-gradient-to-br from-white/95 via-white/90 to-white/85 border border-white/50 shadow-soft">
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}

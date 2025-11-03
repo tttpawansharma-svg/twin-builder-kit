@@ -18,12 +18,12 @@ const Landing = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-gradient-to-b from-background via-background to-muted/20">
-      {/* Navigation */}
+    <div ref={containerRef} className="min-h-screen bg-gradient-to-br from-[hsl(220,25%,97%)] via-[hsl(210,40%,96%)] to-[hsl(213,94%,98%)]">
+      {/* Premium Navigation */}
       <motion.nav 
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border/50"
+        className="fixed top-0 left-0 right-0 z-50 backdrop-blur-[40px] bg-white/40 border-b border-white/20 shadow-soft"
       >
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <motion.div 
@@ -249,7 +249,7 @@ const FeatureCard = ({ icon: Icon, title, description, index, isInView }: any) =
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
-      <Card className="p-8 rounded-[2.5rem] bg-gradient-to-br from-card to-card/50 backdrop-blur-sm border-border/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-2 group">
+      <Card className="p-10 rounded-[2.5rem] bg-gradient-to-br from-white/95 via-white/90 to-white/85 backdrop-blur-[40px] border border-white/50 hover:border-primary/40 hover:shadow-elegant transition-all duration-500 hover:-translate-y-3 group">
         <div className="w-16 h-16 rounded-[2rem] bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
           <Icon className="w-8 h-8 text-primary" />
         </div>
@@ -289,7 +289,7 @@ const PreviewSection = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <Card className="rounded-[2.5rem] overflow-hidden shadow-2xl shadow-primary/10 border-border/50">
+            <Card className="rounded-[3rem] overflow-hidden shadow-elegant border border-white/50">
               <img src={dashboardPreview} alt="Dashboard Preview" className="w-full" />
             </Card>
           </motion.div>
@@ -381,22 +381,22 @@ const CTASection = () => {
         transition={{ duration: 0.8 }}
         className="container mx-auto px-6"
       >
-        <Card className="relative rounded-[3rem] overflow-hidden border-border/50 bg-gradient-to-br from-card via-card to-primary/10 shadow-2xl">
+        <Card className="relative rounded-[3.5rem] overflow-hidden border border-white/50 bg-gradient-to-br from-primary via-accent to-primary shadow-elegant">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 opacity-50" />
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-[120px]" />
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/20 rounded-full blur-[120px]" />
           
           <div className="relative z-10 py-24 px-8 text-center">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+            <h2 className="text-5xl md:text-7xl font-bold mb-6 text-primary-foreground">
               Ready to Get Started?
             </h2>
-            <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
+            <p className="text-xl text-primary-foreground/90 mb-12 max-w-2xl mx-auto">
               Join thousands of professionals using Proptr to scale their presence
             </p>
             <Link to="/signup">
               <Button 
                 size="lg" 
-                className="rounded-full text-lg px-12 py-7 bg-gradient-to-r from-primary to-accent hover:opacity-90 shadow-2xl shadow-primary/40 hover:scale-105 transition-all duration-300"
+                className="rounded-full text-lg px-12 py-8 bg-white text-primary hover:bg-white/95 shadow-elegant hover:shadow-glow hover:scale-105 transition-all duration-500 font-bold"
               >
                 Create Your Digital Twin
                 <ArrowRight className="ml-2 w-5 h-5" />

@@ -52,11 +52,35 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 relative overflow-hidden flex items-center justify-center p-6">
-      {/* Animated background */}
+    <div className="min-h-screen bg-gradient-to-br from-[hsl(220,25%,97%)] via-[hsl(210,40%,96%)] to-[hsl(213,94%,98%)] relative overflow-hidden flex items-center justify-center p-6">
+      {/* Premium animated background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[150px] animate-pulse" style={{ animationDelay: "1s" }} />
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            x: [0, 50, 0],
+            y: [0, -30, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute top-0 left-1/4 w-[700px] h-[700px] bg-primary/20 rounded-full blur-[120px]"
+        />
+        <motion.div
+          animate={{
+            scale: [1.2, 1, 1.2],
+            x: [0, -50, 0],
+            y: [0, 30, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute bottom-0 right-1/4 w-[700px] h-[700px] bg-accent/20 rounded-full blur-[120px]"
+        />
       </div>
 
       <motion.div
@@ -64,18 +88,22 @@ const Signup = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <Card className="relative z-10 w-full max-w-md p-10 rounded-[2.5rem] bg-card/95 backdrop-blur-2xl border-border/50 shadow-2xl">
+        <Card className="relative z-10 w-full max-w-md p-12 rounded-[3rem] bg-white/95 backdrop-blur-[40px] border border-white/50 shadow-elegant">
           <motion.div 
-            className="flex flex-col items-center mb-10"
+            className="flex flex-col items-center mb-12"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
+            transition={{ delay: 0.2, duration: 0.6, type: "spring" }}
           >
-            <div className="w-20 h-20 rounded-[2rem] bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-6 shadow-lg shadow-primary/30">
-              <Bot className="w-10 h-10 text-primary-foreground" />
-            </div>
-            <h1 className="text-4xl font-bold mb-2">Create Account</h1>
-            <p className="text-muted-foreground">Start building your digital twin</p>
+            <motion.div
+              whileHover={{ rotate: 360, scale: 1.1 }}
+              transition={{ duration: 0.7 }}
+              className="w-24 h-24 rounded-[2.2rem] bg-gradient-to-br from-primary via-accent to-primary flex items-center justify-center mb-6 shadow-elegant"
+            >
+              <Bot className="w-12 h-12 text-primary-foreground" />
+            </motion.div>
+            <h1 className="text-5xl font-bold mb-3 tracking-tight">Create Account</h1>
+            <p className="text-muted-foreground text-base">Start building your digital twin</p>
           </motion.div>
 
           <form onSubmit={handleSignup} className="space-y-6">
@@ -99,7 +127,7 @@ const Signup = () => {
                 placeholder="Alex Johnson"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="h-14 rounded-2xl bg-background/50 border-border/50 focus:border-primary text-base"
+                className="h-16 rounded-[1.5rem] bg-white/80 border-white/40 focus:border-primary text-base shadow-soft hover:shadow-soft transition-all"
                 required
               />
             </div>
@@ -124,7 +152,7 @@ const Signup = () => {
                 placeholder="you@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="h-14 rounded-2xl bg-background/50 border-border/50 focus:border-primary text-base"
+                className="h-16 rounded-[1.5rem] bg-white/80 border-white/40 focus:border-primary text-base shadow-soft hover:shadow-soft transition-all"
                 required
               />
             </div>
@@ -149,26 +177,28 @@ const Signup = () => {
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="h-14 rounded-2xl bg-background/50 border-border/50 focus:border-primary text-base"
+                className="h-16 rounded-[1.5rem] bg-white/80 border-white/40 focus:border-primary text-base shadow-soft hover:shadow-soft transition-all"
                 required
                 minLength={8}
               />
             </div>
 
-            <Button
-              type="submit"
-              disabled={isLoading}
-              className="w-full h-14 rounded-2xl text-lg bg-gradient-to-r from-primary to-accent hover:opacity-90 shadow-lg shadow-primary/30 transition-all duration-300 hover:scale-[1.02]"
-            >
-              {isLoading ? (
-                <>
-                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                  Creating Account...
-                </>
-              ) : (
-                "Create Account"
-              )}
-            </Button>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="w-full h-16 rounded-[1.5rem] text-lg font-semibold bg-gradient-to-r from-primary via-accent to-primary hover:opacity-90 shadow-elegant transition-all duration-500"
+              >
+                {isLoading ? (
+                  <>
+                    <Loader2 className="mr-2 h-6 w-6 animate-spin" />
+                    Creating Account...
+                  </>
+                ) : (
+                  "Create Account"
+                )}
+              </Button>
+            </motion.div>
 
             <div className="text-center space-y-4 pt-4">
               <p className="text-muted-foreground">

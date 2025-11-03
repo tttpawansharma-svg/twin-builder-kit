@@ -8,7 +8,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 220 25% 97%;
     --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
@@ -27,7 +27,7 @@ All colors MUST be HSL.
     --muted: 214 32% 95%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 213 94% 55%;
+    --accent: 207 90% 61%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -37,15 +37,20 @@ All colors MUST be HSL.
     --input: 214 32% 91%;
     --ring: 213 94% 55%;
 
-    --radius: 1.5rem;
+    --radius: 1.75rem;
 
     --gradient-primary: linear-gradient(135deg, hsl(213 94% 55%), hsl(207 90% 61%));
-    --gradient-hero: linear-gradient(135deg, hsl(213 94% 55%) 0%, hsl(207 90% 61%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(214 32% 98%));
-    --gradient-glass: linear-gradient(135deg, hsl(0 0% 100% / 0.8), hsl(214 32% 98% / 0.6));
-    --shadow-elegant: 0 20px 60px -15px hsl(213 94% 55% / 0.3);
-    --shadow-glow: 0 0 80px hsl(213 94% 65% / 0.4);
+    --gradient-hero: linear-gradient(135deg, hsl(220 25% 97%) 0%, hsl(210 40% 96%) 50%, hsl(213 94% 98%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(220 25% 97%), hsl(214 32% 98%));
+    --gradient-glass: linear-gradient(135deg, hsl(0 0% 100% / 0.95), hsl(220 40% 98% / 0.9));
+    --gradient-glass-border: linear-gradient(135deg, hsl(213 94% 55% / 0.2), hsl(207 90% 61% / 0.1));
+    --shadow-elegant: 0 20px 60px -15px hsl(213 94% 55% / 0.25);
+    --shadow-glow: 0 0 80px hsl(213 94% 65% / 0.35);
+    --shadow-soft: 0 8px 32px -8px hsl(213 94% 55% / 0.15);
     --transition-smooth: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    --blur-glass: blur(40px);
+    --blur-strong: blur(60px);
   }
 
   .dark {
@@ -67,7 +72,7 @@ All colors MUST be HSL.
     --muted: 223 47% 18%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 213 94% 55%;
+    --accent: 207 90% 61%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 50%;
@@ -78,11 +83,13 @@ All colors MUST be HSL.
     --ring: 213 94% 55%;
 
     --gradient-primary: linear-gradient(135deg, hsl(213 94% 55%), hsl(207 90% 61%));
-    --gradient-hero: linear-gradient(135deg, hsl(213 94% 55%) 0%, hsl(207 90% 61%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(222 47% 11%) 0%, hsl(224 71% 14%) 50%, hsl(220 47% 16%) 100%);
     --gradient-subtle: linear-gradient(180deg, hsl(222 47% 11%), hsl(224 71% 14%));
-    --gradient-glass: linear-gradient(135deg, hsl(224 71% 14% / 0.8), hsl(223 47% 18% / 0.6));
-    --shadow-elegant: 0 20px 60px -15px hsl(213 94% 55% / 0.3);
-    --shadow-glow: 0 0 80px hsl(213 94% 65% / 0.4);
+    --gradient-glass: linear-gradient(135deg, hsl(224 71% 14% / 0.95), hsl(223 47% 18% / 0.9));
+    --gradient-glass-border: linear-gradient(135deg, hsl(213 94% 55% / 0.3), hsl(207 90% 61% / 0.2));
+    --shadow-elegant: 0 20px 60px -15px hsl(213 94% 55% / 0.4);
+    --shadow-glow: 0 0 80px hsl(213 94% 65% / 0.5);
+    --shadow-soft: 0 8px 32px -8px hsl(213 94% 55% / 0.2);
   }
 }
 
