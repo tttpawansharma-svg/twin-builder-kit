@@ -51,71 +51,73 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[hsl(220,25%,97%)] via-[hsl(210,40%,96%)] to-[hsl(213,94%,98%)] relative overflow-hidden flex items-center justify-center p-6">
+    <div className="min-h-screen bg-[hsl(var(--background))] relative overflow-hidden flex items-center justify-center p-6">
       {/* Premium animated background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 50, 0],
-            y: [0, -30, 0],
+            scale: [1, 1.15, 1],
+            x: [0, 40, 0],
+            y: [0, -25, 0],
           }}
           transition={{
-            duration: 20,
+            duration: 18,
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute top-0 left-1/4 w-[700px] h-[700px] bg-primary/20 rounded-full blur-[120px]"
+          className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[100px]"
         />
         <motion.div
           animate={{
-            scale: [1.2, 1, 1.2],
-            x: [0, -50, 0],
-            y: [0, 30, 0],
+            scale: [1.15, 1, 1.15],
+            x: [0, -40, 0],
+            y: [0, 25, 0],
           }}
           transition={{
-            duration: 25,
+            duration: 22,
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute bottom-0 right-1/4 w-[700px] h-[700px] bg-accent/20 rounded-full blur-[120px]"
+          className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[100px]"
         />
       </div>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       >
-        <Card className="relative z-10 w-full max-w-md p-12 rounded-[3rem] bg-white/95 backdrop-blur-[40px] border border-white/50 shadow-elegant">
+        <Card className="relative z-10 w-full max-w-md p-10 rounded-[3rem] bg-card/95 backdrop-blur-sm border border-border/50 shadow-xl">
           <motion.div 
-            className="flex flex-col items-center mb-12"
-            initial={{ opacity: 0, scale: 0.9 }}
+            className="flex flex-col items-center mb-10"
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.6, type: "spring" }}
+            transition={{ delay: 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
             <motion.div
-              whileHover={{ rotate: 360, scale: 1.1 }}
-              transition={{ duration: 0.7 }}
-              className="w-24 h-24 rounded-[2.2rem] bg-gradient-to-br from-primary via-accent to-primary flex items-center justify-center mb-6 shadow-elegant"
+              whileHover={{ rotate: 360, scale: 1.05 }}
+              transition={{ duration: 0.6 }}
+              className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-6 shadow-lg shadow-primary/20"
             >
-              <Bot className="w-12 h-12 text-primary-foreground" />
+              <Bot className="w-10 h-10 text-primary-foreground" />
             </motion.div>
-            <h1 className="text-5xl font-bold mb-3 tracking-tight">Welcome Back</h1>
-            <p className="text-muted-foreground text-base">Sign in to your Proptr account</p>
+            <h1 className="text-4xl font-bold mb-2 tracking-tight">Welcome Back</h1>
+            <p className="text-muted-foreground text-[15px]">Sign in to your Proptr account</p>
           </motion.div>
 
-          <form onSubmit={handleLogin} className="space-y-6">
+          <form onSubmit={handleLogin} className="space-y-5">
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <Label htmlFor="email" className="text-base">Email</Label>
+                <Label htmlFor="email" className="text-sm font-medium">Email</Label>
                 <TooltipProvider>
                   <Tooltip>
-                    <TooltipTrigger>
-                      <Info className="w-4 h-4 text-muted-foreground" />
+                    <TooltipTrigger asChild>
+                      <button type="button" className="focus:outline-none">
+                        <Info className="w-3.5 h-3.5 text-muted-foreground" />
+                      </button>
                     </TooltipTrigger>
-                    <TooltipContent className="rounded-2xl">
-                      <p>Enter your registered email address</p>
+                    <TooltipContent className="rounded-xl">
+                      <p className="text-xs">Enter your registered email address</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
@@ -126,21 +128,23 @@ const Login = () => {
                 placeholder="you@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="h-16 rounded-[1.5rem] bg-white/80 border-white/40 focus:border-primary text-base shadow-soft hover:shadow-soft transition-all"
+                className="h-12 rounded-2xl"
                 required
               />
             </div>
 
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <Label htmlFor="password" className="text-base">Password</Label>
+                <Label htmlFor="password" className="text-sm font-medium">Password</Label>
                 <TooltipProvider>
                   <Tooltip>
-                    <TooltipTrigger>
-                      <Info className="w-4 h-4 text-muted-foreground" />
+                    <TooltipTrigger asChild>
+                      <button type="button" className="focus:outline-none">
+                        <Info className="w-3.5 h-3.5 text-muted-foreground" />
+                      </button>
                     </TooltipTrigger>
-                    <TooltipContent className="rounded-2xl">
-                      <p>Your secure password</p>
+                    <TooltipContent className="rounded-xl">
+                      <p className="text-xs">Your secure password</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
@@ -151,20 +155,21 @@ const Login = () => {
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="h-16 rounded-[1.5rem] bg-white/80 border-white/40 focus:border-primary text-base shadow-soft hover:shadow-soft transition-all"
+                className="h-12 rounded-2xl"
                 required
               />
             </div>
 
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full h-16 rounded-[1.5rem] text-lg font-semibold bg-gradient-to-r from-primary via-accent to-primary hover:opacity-90 shadow-elegant transition-all duration-500"
+                variant="premium"
+                className="w-full h-12 rounded-2xl text-base font-medium"
               >
                 {isLoading ? (
                   <>
-                    <Loader2 className="mr-2 h-6 w-6 animate-spin" />
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                     Signing In...
                   </>
                 ) : (
@@ -173,10 +178,10 @@ const Login = () => {
               </Button>
             </motion.div>
 
-            <div className="text-center space-y-4 pt-4">
-              <p className="text-muted-foreground">
+            <div className="text-center space-y-3 pt-4">
+              <p className="text-muted-foreground text-sm">
                 Don't have an account?{" "}
-                <Link to="/signup" className="text-primary hover:text-accent transition-colors font-semibold">
+                <Link to="/signup" className="text-primary hover:text-accent transition-colors font-medium">
                   Sign up
                 </Link>
               </p>

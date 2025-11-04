@@ -18,97 +18,108 @@ const Landing = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-gradient-to-br from-[hsl(220,25%,97%)] via-[hsl(210,40%,96%)] to-[hsl(213,94%,98%)]">
+    <div ref={containerRef} className="min-h-screen bg-[hsl(var(--background))]">
       {/* Premium Navigation */}
       <motion.nav 
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className="fixed top-0 left-0 right-0 z-50 backdrop-blur-[40px] bg-white/40 border-b border-white/20 shadow-soft"
+        className="fixed top-0 left-0 right-0 z-50 backdrop-blur-[24px] bg-background/80 border-b border-border/50"
       >
-        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="container mx-auto px-8 py-5 flex items-center justify-between">
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
             className="flex items-center gap-3"
           >
-            <div className="w-12 h-12 rounded-[2rem] bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/30">
+            <motion.div 
+              whileHover={{ scale: 1.05, rotate: 5 }}
+              className="w-11 h-11 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/20"
+            >
               <Bot className="w-6 h-6 text-primary-foreground" />
-            </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            </motion.div>
+            <span className="text-2xl font-semibold tracking-tight text-foreground">
               Proptr
             </span>
           </motion.div>
-          <div className="flex items-center gap-4">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="flex items-center gap-3"
+          >
             <Link to="/login">
-              <Button variant="ghost" className="rounded-full">Sign In</Button>
+              <Button variant="ghost" className="rounded-full font-medium">Sign In</Button>
             </Link>
             <Link to="/signup">
-              <Button className="rounded-full bg-gradient-to-r from-primary to-accent hover:opacity-90 shadow-lg shadow-primary/30">
+              <Button variant="premium" className="rounded-full font-medium">
                 Get Started
               </Button>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-32">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-24">
         <motion.div style={{ y, opacity }} className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/80 to-background z-10" />
           <img 
             src={heroImage} 
             alt="3D AI Interface"
-            className="w-full h-full object-cover opacity-40"
+            className="w-full h-full object-cover opacity-30"
           />
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/30 rounded-full blur-[150px] animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-[150px] animate-pulse delay-700" />
+          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[140px] animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/15 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
         </motion.div>
 
-        <div className="container mx-auto px-6 relative z-20">
-          <div className="max-w-5xl mx-auto text-center">
+        <div className="container mx-auto px-8 relative z-20">
+          <div className="max-w-6xl mx-auto text-center">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
-              <span className="inline-block px-6 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6 backdrop-blur-sm border border-primary/20">
-                ✨ The Future of Digital Identity
+              <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/8 text-primary text-sm font-medium mb-8 backdrop-blur-sm border border-primary/10 shadow-sm">
+                <Sparkles className="w-4 h-4" />
+                The Future of Digital Identity
               </span>
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="text-7xl md:text-8xl font-bold mb-8 leading-tight"
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="text-[4.5rem] md:text-[6rem] lg:text-[7rem] font-bold mb-8 leading-[1.1] tracking-tight"
             >
               Your AI-Powered
               <br />
-              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 Digital Twin
               </span>
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-              className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed"
+              transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="text-xl md:text-2xl text-muted-foreground mb-14 max-w-3xl mx-auto leading-relaxed font-light"
             >
               Create an intelligent persona that represents you professionally. 
               Connect with clients through AI-powered conversations, available 24/7.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-6"
+              transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4"
             >
               <Link to="/wizard">
                 <Button 
+                  variant="premium"
                   size="lg" 
-                  className="rounded-full text-lg px-10 py-7 bg-gradient-to-r from-primary to-accent hover:opacity-90 shadow-2xl shadow-primary/40 hover:shadow-primary/60 transition-all duration-300 hover:scale-105"
+                  className="rounded-full text-base px-10 h-14 font-medium"
                 >
                   Create Your Twin
                   <ArrowRight className="ml-2 w-5 h-5" />
@@ -117,7 +128,7 @@ const Landing = () => {
               <Button 
                 size="lg" 
                 variant="outline"
-                className="rounded-full text-lg px-10 py-7 border-2 backdrop-blur-sm bg-background/50 hover:bg-background/80"
+                className="rounded-full text-base px-10 h-14 font-medium hover:bg-muted"
               >
                 Watch Demo
               </Button>
@@ -126,19 +137,19 @@ const Landing = () => {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1 }}
-              className="mt-20 flex items-center justify-center gap-12 text-sm text-muted-foreground"
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="mt-16 flex flex-wrap items-center justify-center gap-x-12 gap-y-4 text-sm text-muted-foreground"
             >
               <div className="flex items-center gap-2">
-                <Check className="w-5 h-5 text-primary" />
+                <Check className="w-4 h-4 text-primary" />
                 <span>No credit card required</span>
               </div>
               <div className="flex items-center gap-2">
-                <Check className="w-5 h-5 text-primary" />
+                <Check className="w-4 h-4 text-primary" />
                 <span>Setup in 5 minutes</span>
               </div>
               <div className="flex items-center gap-2">
-                <Check className="w-5 h-5 text-primary" />
+                <Check className="w-4 h-4 text-primary" />
                 <span>Enterprise ready</span>
               </div>
             </motion.div>
@@ -247,14 +258,17 @@ const FeatureCard = ({ icon: Icon, title, description, index, isInView }: any) =
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
     >
-      <Card className="p-10 rounded-[2.5rem] bg-gradient-to-br from-white/95 via-white/90 to-white/85 backdrop-blur-[40px] border border-white/50 hover:border-primary/40 hover:shadow-elegant transition-all duration-500 hover:-translate-y-3 group">
-        <div className="w-16 h-16 rounded-[2rem] bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-          <Icon className="w-8 h-8 text-primary" />
+      <Card className="relative p-10 rounded-3xl bg-card backdrop-blur-sm border border-border/50 hover:border-primary/20 hover:shadow-lg transition-all duration-500 hover:-translate-y-2 group overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="relative z-10">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/15 to-accent/15 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+            <Icon className="w-7 h-7 text-primary" />
+          </div>
+          <h3 className="text-xl font-semibold mb-3 tracking-tight">{title}</h3>
+          <p className="text-muted-foreground leading-relaxed text-[15px]">{description}</p>
         </div>
-        <h3 className="text-2xl font-semibold mb-4">{title}</h3>
-        <p className="text-muted-foreground leading-relaxed">{description}</p>
       </Card>
     </motion.div>
   );
