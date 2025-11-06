@@ -60,7 +60,7 @@ useEffect(() => {
 
   const signup = async (name: string, email: string, password: string) => {
     try {
-      const response = await fetch(`https://api.digitaltwin.techtrekkers.ai/api/auth/signup`, {
+      const response = await fetch('https://api.digitaltwin.techtrekkers.ai/api/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
