@@ -60,7 +60,12 @@ export interface DigitalTwinProfile {
   businesses: Business[];
   experience: Experience[];
   education: Education[];
-  skills: string[];
+ skills: {
+  list: string[];
+  coreDomains: string;
+  signatureStrengths: string;
+};
+
   personality: Personality;
   story: Story;
   networking: Networking;

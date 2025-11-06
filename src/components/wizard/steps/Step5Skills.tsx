@@ -5,23 +5,29 @@ import { Badge } from "@/components/ui/badge";
 import { X } from "lucide-react";
 import { useState } from "react";
 
+interface SkillsData {
+   list: string[];
+  coreDomains: string;
+  signatureStrengths: string;
+}
+
 interface Step5SkillsProps {
-  data: string[];
-  onChange: (data: string[]) => void;
+  data: SkillsData;
+  onChange: (data: SkillsData) => void;
 }
 
 export const Step5Skills = ({ data, onChange }: Step5SkillsProps) => {
   const [skillInput, setSkillInput] = useState("");
 
   const addSkill = () => {
-    if (skillInput.trim() && !data.includes(skillInput.trim())) {
-      onChange([...data, skillInput.trim()]);
+    if (skillInput.trim() && !data.list.includes(skillInput.trim())) {
+      onChange({ ...data, list: [...data.list, skillInput.trim()] });
       setSkillInput("");
     }
   };
 
   const removeSkill = (skill: string) => {
-    onChange(data.filter((s) => s !== skill));
+    onChange({ ...data, list: data.list.filter((s) => s !== skill) });
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -35,7 +41,9 @@ export const Step5Skills = ({ data, onChange }: Step5SkillsProps) => {
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div>
         <h2 className="text-2xl font-bold text-foreground mb-2">Skills & Capabilities</h2>
-        <p className="text-muted-foreground">What are you exceptional at? What's your expertise?</p>
+        <p className="text-muted-foreground">
+          What are you exceptional at? What's your expertise?
+        </p>
       </div>
 
       <div className="space-y-4">
@@ -55,9 +63,9 @@ export const Step5Skills = ({ data, onChange }: Step5SkillsProps) => {
           </p>
         </div>
 
-        {data.length > 0 && (
+        {data.list.length > 0 && (
           <div className="flex flex-wrap gap-2 p-4 bg-muted/30 rounded-lg">
-            {data.map((skill) => (
+            {data.list.map((skill) => (
               <Badge key={skill} variant="secondary" className="text-sm px-3 py-1.5">
                 {skill}
                 <button
@@ -74,16 +82,20 @@ export const Step5Skills = ({ data, onChange }: Step5SkillsProps) => {
         <div>
           <Label>Core Domains of Expertise</Label>
           <Textarea
-            placeholder="What areas do you specialize in? (e.g., automation, AI strategy, brand building)"
+            placeholder="What areas do you specialize in?"
             className="mt-1.5 min-h-[80px]"
+            value={data.coreDomains}
+            onChange={(e) => onChange({ ...data, coreDomains: e.target.value })}
           />
         </div>
 
         <div>
           <Label>Signature Strengths</Label>
           <Textarea
-            placeholder="What unique strengths do you bring? (e.g., Visionary Strategy, Systems Thinking)"
+            placeholder="What unique strengths do you bring?"
             className="mt-1.5 min-h-[80px]"
+            value={data.signatureStrengths}
+            onChange={(e) => onChange({ ...data, signatureStrengths: e.target.value })}
           />
         </div>
       </div>

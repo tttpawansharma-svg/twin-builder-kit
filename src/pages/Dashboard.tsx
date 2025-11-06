@@ -1,31 +1,57 @@
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Bot, Plus, Download, ExternalLink, LogOut, Sparkles, Zap, TrendingUp } from "lucide-react";
+import { Bot, Plus, Download, ExternalLink, LogOut, Sparkles, Zap, TrendingUp, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import QRCode from "react-qr-code";
 import { motion, AnimatePresence } from "framer-motion";
+import { useDigitalTwin } from "@/contexts/DigitalTwinContext";
+import { useToast } from "@/hooks/use-toast";
 
 interface DigitalTwin {
-  id: string;
-  name: string;
-  role: string;
+  _id: string;
+  identity: {
+    name: string;
+    role: string;
+    tagline: string;
+    bio: string;
+  };
+  isActive: boolean;
   createdAt: string;
-  qrUrl: string;
+  lastUpdated: string;
 }
 
 const Dashboard = () => {
-  const [twins, setTwins] = useState<DigitalTwin[]>([
-    {
-      id: "1",
-      name: "Alex Johnson",
-      role: "Founder & CEO",
-      createdAt: "2025-01-15",
-      qrUrl: `${window.location.origin}/chatbot/1`,
-    },
-  ]);
+  const { digitalTwin, isLoading, loadDigitalTwin, deleteTwin } = useDigitalTwin();
+  const { toast } = useToast();
+  const [twins, setTwins] = useState<DigitalTwin[]>([]);
+  const hasFetched = useRef(false);
 
-  const downloadQR = (id: string) => {
+  useEffect(() => {
+    if (hasFetched.current) return;
+    hasFetched.current = true;
+
+    const fetchTwins = async () => {
+      try {
+        await loadDigitalTwin(); // fetches data from backend and updates context
+      } catch (error: any) {
+        toast({
+          title: "Load failed",
+          description: error.message || "Failed to load digital twin",
+          variant: "destructive",
+        });
+      }
+    };
+
+    fetchTwins();
+  }, [loadDigitalTwin, toast]);
+
+  // Sync context digitalTwin to state
+  useEffect(() => {
+    if (digitalTwin) {
+      setTwins([digitalTwin]); // Wrap single twin in array for list display
+    }
+  }, [digitalTwin]);
+
+  const downloadQR = useCallback((id: string) => {
     const svg = document.getElementById(`qr-${id}`);
     if (svg) {
       const svgData = new XMLSerializer().serializeToString(svg);
@@ -44,190 +70,89 @@ const Dashboard = () => {
       };
       img.src = "data:image/svg+xml;base64," + btoa(svgData);
     }
-  };
+  }, []);
+
+  const handleDelete = useCallback(async () => {
+    try {
+      await deleteTwin();
+      setTwins([]);
+      toast({
+        title: "Success",
+        description: "Digital twin deleted successfully.",
+      });
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to delete digital twin.",
+        variant: "destructive",
+      });
+    }
+  }, [deleteTwin, toast]);
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="text-lg text-muted-foreground animate-pulse">Loading...</div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-[hsl(var(--background))]">
-      {/* Premium Navigation */}
-      <motion.nav
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        className="border-b border-border/50 backdrop-blur-[24px] bg-background/80 sticky top-0 z-50"
-      >
-        <div className="container mx-auto px-8 py-5 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3 group">
-            <motion.div
-              whileHover={{ scale: 1.05, rotate: 5 }}
-              className="w-11 h-11 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-md shadow-primary/20"
-            >
-              <Bot className="w-6 h-6 text-primary-foreground" />
-            </motion.div>
-            <span className="text-2xl font-semibold tracking-tight text-foreground">
-              Proptr
-            </span>
-          </Link>
-          <div className="flex items-center gap-3">
-            <Button variant="ghost" className="text-muted-foreground hover:text-foreground rounded-full font-medium">
-              <LogOut className="w-4 h-4 mr-2" />
-              Logout
-            </Button>
-          </div>
-        </div>
-      </motion.nav>
-
-      {/* Hero Section */}
-      <div className="container mx-auto px-8 pt-16 pb-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-16"
-        >
-          <div className="flex-1">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.1 }}
-            >
-              <h1 className="text-5xl md:text-6xl font-bold mb-4 tracking-tight leading-[1.1]">
-                Your Digital
-                <br />
-                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  Twins
-                </span>
-              </h1>
-              <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                Manage your AI-powered professional personas with elegance
-              </p>
-            </motion.div>
-
-            {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="flex items-center gap-8 mt-8"
-            >
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-sm text-muted-foreground font-medium">{twins.length} Active</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <TrendingUp className="w-4 h-4 text-primary" />
-                <span className="text-sm text-muted-foreground font-medium">100% Uptime</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Zap className="w-4 h-4 text-accent" />
-                <span className="text-sm text-muted-foreground font-medium">Instant Response</span>
-              </div>
-            </motion.div>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20 p-8">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-bold text-slate-800 flex items-center gap-2">
+            <Bot className="w-7 h-7 text-primary" />
+            Your Digital Twins
+          </h1>
+          <Link
+            to="/wizard"
+            className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-xl hover:bg-primary/90 transition"
           >
-            <Link to="/wizard">
-              <Button variant="premium" className="h-12 px-8 rounded-2xl text-base font-medium">
-                <Plus className="w-5 h-5 mr-2" />
-                Create New Twin
-              </Button>
-            </Link>
-          </motion.div>
-        </motion.div>
-      </div>
+            <Plus className="w-5 h-5" />
+            Create New
+          </Link>
+        </div>
 
-      {/* Twins Grid */}
-      <div className="container mx-auto px-8 pb-20">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          <AnimatePresence>
-            {twins.map((twin, index) => (
+        {twins.length === 0 ? (
+          <div className="text-center py-20 bg-white/70 rounded-3xl shadow-md">
+            <Sparkles className="w-10 h-10 mx-auto mb-4 text-primary" />
+            <p className="text-slate-600 text-lg">No Digital Twin found. Create your first one!</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {twins.map((twin) => (
               <motion.div
-                key={twin.id}
-                initial={{ opacity: 0, y: 30 }}
+                key={twin._id}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 + index * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                whileHover={{ y: -8 }}
+                className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition"
               >
-                <Card className="relative overflow-hidden p-8 bg-card backdrop-blur-sm border border-border/50 hover:border-primary/20 rounded-3xl hover:shadow-lg transition-all duration-500 group">
-                  {/* Subtle gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                  {/* Content */}
-                  <div className="relative z-10">
-                    <div className="flex items-start justify-between mb-6">
-                      <div className="flex-1">
-                        <h3 className="text-xl font-semibold text-foreground mb-1.5 tracking-tight">{twin.name}</h3>
-                        <p className="text-sm text-muted-foreground">{twin.role}</p>
-                      </div>
-                      <motion.div
-                        whileHover={{ rotate: 360, scale: 1.1 }}
-                        transition={{ duration: 0.5 }}
-                        className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-md shadow-primary/20"
-                      >
-                        <Bot className="w-6 h-6 text-primary-foreground" />
-                      </motion.div>
-                    </div>
-
-                    {/* QR Code */}
-                    <motion.div
-                      whileHover={{ scale: 1.03 }}
-                      transition={{ duration: 0.3 }}
-                      className="bg-white p-5 rounded-2xl mb-6 flex items-center justify-center shadow-inner relative overflow-hidden group/qr"
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover/qr:opacity-100 transition-opacity duration-300" />
-                      <div id={`qr-${twin.id}`} className="relative z-10">
-                        <QRCode
-                          value={twin.qrUrl}
-                          size={180}
-                          style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                          viewBox={`0 0 180 180`}
-                        />
-                      </div>
-                    </motion.div>
-
-                    {/* Actions */}
-                    <div className="space-y-2.5">
-                      <Button
-                        variant="outline"
-                        className="w-full rounded-2xl h-11 font-medium transition-all duration-300"
-                        onClick={() => downloadQR(twin.id)}
-                      >
-                        <Download className="w-4 h-4 mr-2" />
-                        Download QR
-                      </Button>
-                      <Link to={`/chatbot/${twin.id}`} className="block">
-                        <Button className="w-full bg-primary/10 hover:bg-primary/15 text-foreground border border-border/50 hover:border-primary/30 rounded-2xl h-11 font-medium transition-all duration-300">
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          Open Chatbot
-                        </Button>
-                      </Link>
-                    </div>
-
-                    {/* Footer */}
-                    <div className="mt-5 pt-5 border-t border-border/30">
-                      <div className="flex items-center justify-between">
-                        <p className="text-xs text-muted-foreground">
-                          Created {new Date(twin.createdAt).toLocaleDateString()}
-                        </p>
-                        <div className="flex items-center gap-1.5">
-                          <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                          <span className="text-xs text-muted-foreground">Active</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-xl font-semibold">{twin.identity.name}</h2>
+                  <Trash2
+                    className="w-5 h-5 text-red-500 cursor-pointer hover:text-red-600"
+                    onClick={handleDelete}
+                  />
+                </div>
+                <p className="text-slate-600">{twin.identity.role}</p>
+                <p className="mt-2 text-sm text-slate-500">{twin.identity.bio}</p>
+                <div className="mt-6 flex flex-col items-center">
+                  <QRCode id={`qr-${twin._id}`} value={`https://digitaltwin.techtrekkers.ai/chatbot/${twin._id}`} size={120} />
+                  <button
+                    onClick={() => downloadQR(twin._id)}
+                    className="mt-3 text-primary text-sm hover:underline"
+                  >
+                    Download QR
+                  </button>
+                </div>
+                <div className="mt-6 text-xs text-slate-400">
+                  Last updated: {new Date(twin.lastUpdated).toLocaleString()}
+                </div>
               </motion.div>
             ))}
-          </AnimatePresence>
-        </motion.div>
+          </div>
+        )}
       </div>
     </div>
   );
