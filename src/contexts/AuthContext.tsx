@@ -38,8 +38,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
 
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL + '/api/auth';
-
+  const API_BASE_URL = 'https://api.digitaltwin.techtrekkers.ai/api/auth';
 
 useEffect(() => {
   const storedToken = localStorage.getItem('token');
@@ -60,7 +59,7 @@ useEffect(() => {
 
   const signup = async (name: string, email: string, password: string) => {
     try {
-      const response = await fetch('https://api.digitaltwin.techtrekkers.ai/api/auth/signup', {
+      const response = await fetch(`${API_BASE_URL}/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -98,7 +97,7 @@ useEffect(() => {
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await fetch(`https://api.digitaltwin.techtrekkers.ai/api/auth/login`, {
+      const response = await fetch(`${API_BASE_URL}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -136,7 +135,7 @@ useEffect(() => {
 
   const googleAuth = async (googleData: any) => {
     try {
-      const response = await fetch(`https://api.digitaltwin.techtrekkers.ai/api/auth/google`, {
+      const response = await fetch(`${API_BASE_URL}/google`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -178,7 +177,7 @@ useEffect(() => {
   };
 const getProfile = async () => {
   try {
-    const response = await fetch(`https://api.digitaltwin.techtrekkers.ai/api/auth/profile`, {
+    const response = await fetch(`${API_BASE_URL}/profile`, {
       headers: {
         'Authorization': `Bearer ${token}`,
       },
