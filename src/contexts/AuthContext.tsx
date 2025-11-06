@@ -60,7 +60,7 @@ useEffect(() => {
 
   const signup = async (name: string, email: string, password: string) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/signup`, {
+      const response = await fetch(`https://api.digitaltwin.techtrekkers.ai/api/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ useEffect(() => {
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/login`, {
+      const response = await fetch(`https://api.digitaltwin.techtrekkers.ai/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -136,7 +136,7 @@ useEffect(() => {
 
   const googleAuth = async (googleData: any) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/google`, {
+      const response = await fetch(`https://api.digitaltwin.techtrekkers.ai/api/auth/google`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -178,7 +178,7 @@ useEffect(() => {
   };
 const getProfile = async () => {
   try {
-    const response = await fetch(`${API_BASE_URL}/profile`, {
+    const response = await fetch(`https://api.digitaltwin.techtrekkers.ai/api/auth/profile`, {
       headers: {
         'Authorization': `Bearer ${token}`,
       },
