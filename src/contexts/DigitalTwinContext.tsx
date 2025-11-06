@@ -32,7 +32,7 @@ export const DigitalTwinProvider: React.FC<DigitalTwinProviderProps> = ({ childr
   const { toast } = useToast();
   const { token } = useAuth();
 
-const API_BASE_URL = `${import.meta.env.VITE_API_URL}/api/digital-twin`;
+const API_BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/digital-twin`;
 
 
   const saveDigitalTwin = async (data: DigitalTwinProfile) => {

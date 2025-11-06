@@ -38,7 +38,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
 
-  const API_BASE_URL = import.meta.env.VITE_API_URL + '/api/auth';
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL + '/api/auth';
 
 
 useEffect(() => {
