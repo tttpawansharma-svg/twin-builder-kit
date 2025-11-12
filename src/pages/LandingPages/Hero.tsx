@@ -58,7 +58,7 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed max-w-xl"
             >
-              Create an intelligent persona that represents you professionally. 
+              Create an intelligent person that represents you professionally. 
               Connect with clients through AI-powered conversations, available 24/7.
             </motion.p>
 
