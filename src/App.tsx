@@ -14,6 +14,9 @@ import NotFound from "./pages/NotFound";
 import { AuthProvider } from "./contexts/AuthContext";
 import { DigitalTwinProvider } from "./contexts/DigitalTwinContext";
 import ProtectedRoute from "./contexts/ProtectedRoute";
+import HomeAllPage from "./pages/LandingPages/HomeAllPage";
+import Navigation from "./pages/LandingPages/Navbar";
+import AppFooter from "./pages/LandingPages/Footer";
 
 const queryClient = new QueryClient();
 
@@ -25,23 +28,32 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Landing />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route
-                path="/dashboard"
-                element={
-                  <ProtectedRoute>
-                    <Dashboard />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="/chatbot/:id" element={<Chatbot />} />
-              <Route path="/wizard" element={<Index />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <div className="min-h-screen bg-slate-950">
+              {/* Permanent Navigation */}
+              <Navigation />
+              
+              {/* All Routes */}
+              <Routes>
+                <Route path="/" element={<HomeAllPage />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route
+                  path="/dashboard"
+                  element={
+                    <ProtectedRoute>
+                      <Dashboard />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="/chatbot/:id" element={<Chatbot />} />
+                <Route path="/wizard" element={<Index />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+              
+              {/* Permanent Footer */}
+              <AppFooter />
+            </div>
           </BrowserRouter>
         </DigitalTwinProvider>
       </TooltipProvider>

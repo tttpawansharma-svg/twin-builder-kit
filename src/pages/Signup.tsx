@@ -59,7 +59,7 @@ const Signup = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900 relative overflow-hidden flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900 relative overflow-hidden flex items-center justify-center p-6 pt-24">
       {/* Premium animated background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
