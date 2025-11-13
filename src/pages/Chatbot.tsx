@@ -803,20 +803,20 @@ const Chatbot = () => {
   // Loading or Error States
   if (error) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen text-red-500">
-        <p className="text-lg font-semibold mb-4">⚠️ {error}</p>
+      <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-[#0A1929] via-[#0D2137] to-[#0A1929]">
+        <p className="text-lg font-semibold mb-4 text-red-400">⚠️ {error}</p>
         <Link to="/dashboard">
-          <Button variant="outline">Go Back</Button>
+          <Button variant="outline" className="border-cyan-500/30 text-white hover:bg-white/5">Go Back</Button>
         </Link>
       </div>
     );
   }
   if (!agent) {
     return (
-      <div className="flex items-center justify-center h-screen text-muted-foreground">
+      <div className="flex items-center justify-center h-screen bg-gradient-to-br from-[#0A1929] via-[#0D2137] to-[#0A1929]">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin"></div>
-          <div className="text-lg text-slate-600 font-medium">Loading digital twin...</div>
+          <div className="w-12 h-12 border-4 border-cyan-500/20 border-t-cyan-400 rounded-full animate-spin"></div>
+          <div className="text-lg text-slate-300 font-medium">Loading digital twin...</div>
         </div>
       </div>
     );
@@ -830,18 +830,18 @@ const Chatbot = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-br from-[#0A1929] via-[#0D2137] to-[#0A1929] flex flex-col">
       {/* Header */}
       <motion.div
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="border-b border-border/50 backdrop-blur-[24px] bg-background/80 sticky top-0 z-40"
+        className="border-b border-cyan-500/10 backdrop-blur-[24px] bg-[#0A1929]/80 sticky top-0 z-40"
       >
         <div className="container mx-auto px-4 py-4 lg:px-8 lg:py-5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <Link to="/dashboard">
-                <Button variant="ghost" size="icon" className="rounded-full" aria-label="Go back">
+                <Button variant="ghost" size="icon" className="rounded-full text-slate-300 hover:text-cyan-400 hover:bg-white/5" aria-label="Go back">
                   <ArrowLeft className="w-5 h-5" />
                 </Button>
               </Link>
@@ -852,27 +852,27 @@ const Chatbot = () => {
                   whileHover={{ scale: 1.05 }}
                   src={getAgentProfilePicture()!}
                   alt={agent.identity.name}
-                  className="w-12 h-12 rounded-2xl object-cover shadow-lg border border-primary/20"
+                  className="w-12 h-12 rounded-2xl object-cover shadow-lg border border-cyan-500/30"
                 />
               ) : (
                 <motion.div
                   whileHover={{ scale: 1.05, rotate: 5 }}
-                  className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg shadow-primary/30"
+                  className="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-500 to-teal-400 flex items-center justify-center shadow-lg shadow-cyan-500/30"
                 >
-                  <Bot className="w-6 h-6 text-primary-foreground" />
+                  <Bot className="w-6 h-6 text-white" />
                 </motion.div>
               )}
 
               <div>
-                <h1 className="text-lg font-bold text-foreground tracking-tight">{agent.identity.name}</h1>
-                <p className="text-sm text-muted-foreground font-medium">{agent.identity.role} • Digital Twin Advisor</p>
+                <h1 className="text-lg font-bold text-white tracking-tight">{agent.identity.name}</h1>
+                <p className="text-sm text-cyan-300 font-medium">{agent.identity.role} • Digital Twin Advisor</p>
               </div>
             </div>
 
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-sm text-muted-foreground font-medium">Live Insights</span>
+                <div className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
+                <span className="text-sm text-slate-300 font-medium">Live Insights</span>
               </div>
             </div>
           </div>
@@ -899,11 +899,11 @@ const Chatbot = () => {
                         <img
                           src={getAgentProfilePicture()!}
                           alt={agent.identity.name}
-                          className="w-12 h-12 rounded-2xl object-cover shadow-lg border border-primary/20"
+                          className="w-12 h-12 rounded-2xl object-cover shadow-lg border border-cyan-500/30"
                         />
                       ) : (
-                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/30">
-                          <Bot className="w-6 h-6 text-primary-foreground" />
+                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-500 to-teal-400 flex items-center justify-center shadow-lg shadow-cyan-500/30">
+                          <Bot className="w-6 h-6 text-white" />
                         </div>
                       )
                     ) : (
@@ -911,11 +911,11 @@ const Chatbot = () => {
                         <img
                           src={getUserProfilePicture()}
                           alt={userProfile?.name || "User"}
-                          className="w-12 h-12 rounded-2xl object-cover shadow-lg border border-muted-foreground/20"
+                          className="w-12 h-12 rounded-2xl object-cover shadow-lg border border-slate-400/20"
                         />
                       ) : (
-                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-muted to-muted-foreground/10 flex items-center justify-center shadow-lg shadow-muted/20">
-                          <User className="w-6 h-6 text-muted-foreground" />
+                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-slate-600 to-slate-500 flex items-center justify-center shadow-lg shadow-slate-500/20">
+                          <User className="w-6 h-6 text-white" />
                         </div>
                       )
                     )}
@@ -924,11 +924,11 @@ const Chatbot = () => {
                   {/* Message Content */}
                   <Card
                     className={`p-6 max-w-[80%] rounded-2xl border-0 shadow-sm ${
-                      message.role === "assistant" ? "bg-card/90 backdrop-blur-sm shadow-primary/10" : "bg-primary/10 shadow-primary/5"
+                      message.role === "assistant" ? "bg-white/10 backdrop-blur-sm shadow-cyan-500/10 border border-cyan-500/10" : "bg-cyan-500/20 shadow-cyan-500/5 border border-cyan-500/20"
                     }`}
                   >
-                    <p className="text-foreground leading-relaxed text-base whitespace-pre-wrap font-medium">{message.content}</p>
-                    <p className="text-xs text-muted-foreground/60 mt-3 flex items-center gap-1">
+                    <p className="text-white leading-relaxed text-base whitespace-pre-wrap font-medium">{message.content}</p>
+                    <p className="text-xs text-slate-400 mt-3 flex items-center gap-1">
                       <span>{message.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</span>
                       {message.role === "user" && <User className="w-3 h-3" />}
                     </p>
@@ -937,11 +937,11 @@ const Chatbot = () => {
               ))}
             </AnimatePresence>
             {loading && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-3 text-muted-foreground ml-16">
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-3 text-slate-300 ml-16">
                 <div className="flex gap-1">
-                  <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                  <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                  <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                  <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                  <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                  <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
                 </div>
                 <span className="text-sm italic">Strategizing response...</span>
               </motion.div>
@@ -951,21 +951,59 @@ const Chatbot = () => {
         </div>
       </ScrollArea>
 
+      
+
+      {/* Input Area */}
+      <motion.div
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="border-t border-cyan-500/10 backdrop-blur-[24px] bg-[#0A1929]/80 sticky bottom-0 shadow-xl"
+      >
+        <div className="container mx-auto px-4 py-4 lg:px-8 lg:py-6">
+          <div className="max-w-3xl mx-auto">
+            <div className="flex items-center gap-3 p-3 rounded-2xl bg-white/5 border border-cyan-500/20 focus-within:border-cyan-500/40 transition-all duration-300 shadow-md">
+              <Input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyPress}
+                placeholder={`Chat with ${agent.identity.name}... (e.g., "How can we partner?")`}
+                className="flex-1 bg-transparent border-0 focus-visible:ring-0 focus-visible:ring-offset-0 h-12 text-base px-4 text-white placeholder:text-slate-500"
+                disabled={loading}
+                aria-label="Type your message"
+              />
+              <Button
+                onClick={() => handleSend()}
+                disabled={!input.trim() || loading}
+                variant="default"
+                className="h-12 w-12 p-0 rounded-xl shadow-md hover:shadow-lg bg-gradient-to-r from-cyan-500 to-teal-400 hover:from-cyan-600 hover:to-teal-500 border-0"
+                aria-label="Send message"
+              >
+                <Send className="w-5 h-5" />
+              </Button>
+            </div>
+            <p className="text-xs text-slate-400 text-center mt-2">
+              Enter to send • Shift + Enter for new line • Guided by business templates above
+            </p>
+          </div>
+        </div>
+      </motion.div>
+
       {/* Quick Templates */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="border-t border-border/30 backdrop-blur-sm bg-background/50 py-4 sticky bottom-20 z-30"
+        className="border-t border-cyan-500/10 backdrop-blur-sm bg-[#0A1929]/50 py-4   bottom-20 z-30"
       >
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap gap-2 justify-center max-w-md mx-auto">
+          <div className="flex gap-4 justify-center max-w-md mx-auto">
             {templates.map((template, idx) => (
               <Button
                 key={idx}
                 variant="outline"
                 size="sm"
                 onClick={template.onClick}
-                className="flex items-center gap-1 rounded-full text-xs"
+                className="flex items-center gap-1 rounded-full text-xs border-cyan-500/30 text-black hover:bg-white/5 hover:text-cyan-400 hover:border-cyan-500/50"
                 aria-label={template.label}
               >
                 {template.icon}
@@ -976,99 +1014,70 @@ const Chatbot = () => {
         </div>
       </motion.div>
 
-      {/* Input Area */}
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.3 }}
-        className="border-t border-border/50 backdrop-blur-[24px] bg-background/80 sticky bottom-0 shadow-xl"
-      >
-        <div className="container mx-auto px-4 py-4 lg:px-8 lg:py-6">
-          <div className="max-w-3xl mx-auto">
-            <div className="flex items-center gap-3 p-3 rounded-2xl bg-card/80 border border-border/30 focus-within:border-primary/40 transition-all duration-300 shadow-md">
-              <Input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyPress}
-                placeholder={`Chat with ${agent.identity.name}... (e.g., "How can we partner?")`}
-                className="flex-1 bg-transparent border-0 focus-visible:ring-0 focus-visible:ring-offset-0 h-12 text-base px-4"
-                disabled={loading}
-                aria-label="Type your message"
-              />
-              <Button
-                onClick={() => handleSend()}
-                disabled={!input.trim() || loading}
-                variant="default"
-                className="h-12 w-12 p-0 rounded-xl shadow-md hover:shadow-lg"
-                aria-label="Send message"
-              >
-                <Send className="w-5 h-5" />
-              </Button>
-            </div>
-            <p className="text-xs text-muted-foreground text-center mt-2">
-              Enter to send • Shift + Enter for new line • Guided by business templates above
-            </p>
-          </div>
-        </div>
-      </motion.div>
-
       {/* Lead Capture Modal */}
       <Dialog open={showLeadModal} onOpenChange={setShowLeadModal}>
-        <DialogContent className="sm:max-w-md rounded-2xl">
+        <DialogContent className="sm:max-w-md rounded-2xl bg-[#132F4C] border border-cyan-500/20">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2 text-foreground">
-              <Building className="w-5 h-5 text-primary" />
+            <DialogTitle className="flex items-center gap-2 text-white">
+              <Building className="w-5 h-5 text-cyan-400" />
               Let's Connect for Business
             </DialogTitle>
           </DialogHeader>
           <form onSubmit={handleLeadSubmit} className="space-y-4">
             <div>
-              <Label htmlFor="name">Full Name *</Label>
+              <Label htmlFor="name" className="text-slate-300">Full Name *</Label>
               <Input
                 id="name"
                 value={leadData.name}
                 onChange={(e) => setLeadData((prev) => ({ ...prev, name: e.target.value }))}
                 required
+                className="bg-white/5 border-cyan-500/30 text-white placeholder:text-slate-500 focus:ring-cyan-500/50 focus:border-cyan-500/50"
               />
             </div>
             <div>
-              <Label htmlFor="email">Email *</Label>
+              <Label htmlFor="email" className="text-slate-300">Email *</Label>
               <Input
                 id="email"
                 type="email"
                 value={leadData.email}
                 onChange={(e) => setLeadData((prev) => ({ ...prev, email: e.target.value }))}
                 required
+                className="bg-white/5 border-cyan-500/30 text-white placeholder:text-slate-500 focus:ring-cyan-500/50 focus:border-cyan-500/50"
               />
             </div>
             <div>
-              <Label htmlFor="phone">Phone</Label>
+              <Label htmlFor="phone" className="text-slate-300">Phone</Label>
               <Input
                 id="phone"
                 value={leadData.phone}
                 onChange={(e) => setLeadData((prev) => ({ ...prev, phone: e.target.value }))}
+                className="bg-white/5 border-cyan-500/30 text-white placeholder:text-slate-500 focus:ring-cyan-500/50 focus:border-cyan-500/50"
               />
             </div>
             <div>
-              <Label htmlFor="company">Company *</Label>
+              <Label htmlFor="company" className="text-slate-300">Company *</Label>
               <Input
                 id="company"
                 value={leadData.company}
                 onChange={(e) => setLeadData((prev) => ({ ...prev, company: e.target.value }))}
                 required
+                className="bg-white/5 border-cyan-500/30 text-white placeholder:text-slate-500 focus:ring-cyan-500/50 focus:border-cyan-500/50"
               />
             </div>
             <div>
-              <Label htmlFor="interest">Area of Interest</Label>
+              <Label htmlFor="interest" className="text-slate-300">Area of Interest</Label>
               <Textarea
                 id="interest"
                 value={leadData.interest}
                 onChange={(e) => setLeadData((prev) => ({ ...prev, interest: e.target.value }))}
                 placeholder="What specifically are you interested in?"
                 rows={3}
+                className="bg-white/5 border-cyan-500/30 text-white placeholder:text-slate-500 focus:ring-cyan-500/50 focus:border-cyan-500/50 resize-none"
               />
             </div>
-            <Button type="submit" className="w-full rounded-xl">Submit & Continue Chat</Button>
+            <Button type="submit" className="w-full rounded-xl bg-gradient-to-r from-cyan-500 to-teal-400 hover:from-cyan-600 hover:to-teal-500 border-0">
+              Submit & Continue Chat
+            </Button>
           </form>
         </DialogContent>
       </Dialog>

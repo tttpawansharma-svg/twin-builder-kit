@@ -4,6 +4,7 @@ import axios from 'axios';
 // Base URL for all API calls
 // Priority: Environment variable > Production URL
 const BASE_URL = 'https://api.digitaltwin.techtrekkers.ai/api';
+// const BASE_URL = 'http://localhost:5000/api';
 
 // Create axios instance with default config
 const axiosInstance = axios.create({
@@ -55,6 +56,7 @@ export default axiosInstance;
 // Export base URL for non-axios usage (like fetch or image URLs)
 export const API_BASE_URL = BASE_URL;
 export const IMAGE_BASE_URL = 'https://api.digitaltwin.techtrekkers.ai';
+// export const IMAGE_BASE_URL = 'http://localhost:5000';
 
 // Log the current configuration (only in development)
 if (import.meta.env.DEV) {

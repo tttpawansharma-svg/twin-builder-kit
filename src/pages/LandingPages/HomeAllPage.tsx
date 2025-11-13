@@ -7,6 +7,7 @@ import PreviewSection from './Preview'
 import StatsSection from './Stats'
 import CTASection from './Cta'
 import AppFooter from './Footer'
+import VideoDemo from './VideoDemo'
 
 const HomeAllPage = () => {
   return (
@@ -16,6 +17,8 @@ const HomeAllPage = () => {
 
       {/* Hero Section */}
       <HeroSection />
+
+      < VideoDemo />
 
       {/* Features Section */}
       <FeaturesSection />

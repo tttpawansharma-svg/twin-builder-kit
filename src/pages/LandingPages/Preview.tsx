@@ -1,6 +1,7 @@
 import { Check, Sparkles } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import dashboardImg from "@/Images/ChatGPT Image Nov 13, 2025, 02_02_42 PM.png"
 
 const PreviewSection = () => {
   const sectionRef = useRef(null);
@@ -146,7 +147,7 @@ const PreviewSection = () => {
                 transition={{ duration: 0.3 }}
               >
                 <img 
-                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop" 
+                  src={dashboardImg} 
                   alt="Dashboard Preview" 
                   className="w-full h-auto"
                 />

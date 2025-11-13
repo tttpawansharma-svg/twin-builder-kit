@@ -108,7 +108,7 @@ const HeroSection = () => {
                 className="absolute inset-0 -m-12"
               >
                 <svg className="w-full h-full" viewBox="0 0 500 500">
-                  <circle cx="250" cy="250" r="230" fill="none" stroke="url(#gradient1)" strokeWidth="1" strokeDasharray="5 5" />
+                  <circle cx="250" cy="250" r="230" fill="none" stroke="url(#gradient1)" strokeWidth="1" strokeDasharray="5 5" /> 
                   <defs>
                     <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
                       <stop offset="0%" stopColor="#06b6d4" />

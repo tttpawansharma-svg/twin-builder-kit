@@ -178,6 +178,7 @@ const FeaturesSection = () => {
           />
         ))}
       </div>
+     
 
       <div className="container mx-auto px-6 lg:px-8 relative z-10">
         {/* Section Header */}

@@ -975,7 +975,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20">
+    <div className="min-h-screen bg-gradient-to-br from-[#0A1929] via-[#0D2137] to-[#0A1929]">
       {/* Profile Picture Modal */}
       <AnimatePresence>
         {isProfileModalOpen && (
@@ -983,20 +983,20 @@ const Dashboard = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-3xl p-8 max-w-md w-full shadow-xl"
+              className="bg-[#132F4C] rounded-3xl p-8 max-w-md w-full shadow-xl border border-cyan-500/20"
             >
               <div className="text-center">
-                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Camera className="w-8 h-8 text-primary" />
+                <div className="w-20 h-20 bg-cyan-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Camera className="w-8 h-8 text-cyan-400" />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-800 mb-2">Add Profile Picture</h3>
-                <p className="text-slate-600 mb-6">
+                <h3 className="text-2xl font-bold text-white mb-2">Add Profile Picture</h3>
+                <p className="text-slate-300 mb-6">
                   Make your profile stand out with a professional photo
                 </p>
                 
@@ -1011,7 +1011,7 @@ const Dashboard = () => {
                 <button
                   onClick={() => fileInputRef.current?.click()}
                   disabled={isUploading}
-                  className="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-primary/90 transition disabled:opacity-50 disabled:cursor-not-allowed mb-3"
+                  className="w-full bg-gradient-to-r from-cyan-500 to-teal-400 text-white py-3 rounded-xl font-semibold hover:from-cyan-600 hover:to-teal-500 transition disabled:opacity-50 disabled:cursor-not-allowed mb-3 shadow-lg shadow-cyan-500/20"
                 >
                   {isUploading ? "Uploading..." : "Choose Photo"}
                 </button>
@@ -1019,7 +1019,7 @@ const Dashboard = () => {
                 <button
                   onClick={() => setIsProfileModalOpen(false)}
                   disabled={isUploading}
-                  className="w-full text-slate-600 py-3 rounded-xl font-medium hover:bg-slate-50 transition"
+                  className="w-full text-slate-300 py-3 rounded-xl font-medium hover:bg-white/5 transition border border-white/10"
                 >
                   Skip for now
                 </button>
@@ -1030,16 +1030,16 @@ const Dashboard = () => {
       </AnimatePresence>
 
       {/* Header */}
-      <header className="sticky top-0 z-40 backdrop-blur-xl bg-white/70 border-b border-white/20">
+      <header className="sticky top-0 z-40 backdrop-blur-xl bg-[#0A1929]/80 border-b border-cyan-500/10">
         <div className="max-w-7xl mx-auto px-8 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary/70 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-teal-400 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/20">
                 <Bot className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-slate-800">DigitalTwin</h1>
-                <p className="text-sm text-slate-500">Professional AI Assistant</p>
+                <h1 className="text-xl font-bold text-white">DigitalTwin</h1>
+                <p className="text-sm text-cyan-300">Professional AI Assistant</p>
               </div>
             </div>
 
@@ -1049,14 +1049,14 @@ const Dashboard = () => {
                 <div className="flex items-center gap-2 text-slate-400 font-medium">
                   <FileText className="w-4 h-4" />
                   <span className="text-slate-400">Resume</span>
-                  <span className="bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded-full">Soon</span>
+                  <span className="bg-cyan-500/20 text-cyan-300 text-xs px-2 py-1 rounded-full border border-cyan-500/30">Soon</span>
                 </div>
                 <div className="flex items-center gap-2 text-slate-400 font-medium">
                   <Briefcase className="w-4 h-4" />
                   <span className="text-slate-400">Portfolio</span>
-                  <span className="bg-purple-100 text-purple-600 text-xs px-2 py-1 rounded-full">Soon</span>
+                  <span className="bg-teal-500/20 text-teal-300 text-xs px-2 py-1 rounded-full border border-teal-500/30">Soon</span>
                 </div>
-                <Link to="/dashboard" className="text-primary font-semibold border-b-2 border-primary">
+                <Link to="/dashboard" className="text-cyan-400 font-semibold border-b-2 border-cyan-400">
                   Dashboard
                 </Link>
               </nav>
@@ -1065,7 +1065,7 @@ const Dashboard = () => {
               <div className="relative">
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className="flex items-center gap-3 p-2 rounded-2xl bg-white/50 backdrop-blur-sm border border-white/20 hover:bg-white/70 transition"
+                  className="flex items-center gap-3 p-2 rounded-2xl bg-white/5 backdrop-blur-sm border border-cyan-500/20 hover:bg-white/10 hover:border-cyan-500/30 transition"
                 >
                   {userProfile?.profilePicture || userProfile?.avatar ? (
                     <img
@@ -1075,18 +1075,18 @@ const Dashboard = () => {
                           : `${IMAGE_BASE_URL}${userProfile.avatar}`
                       }
                       alt={userProfile.name}
-                      className="w-8 h-8 rounded-full object-cover"
+                      className="w-8 h-8 rounded-full object-cover ring-2 ring-cyan-500/30"
                     />
                   ) : (
-                    <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                    <div className="w-8 h-8 bg-gradient-to-br from-cyan-500 to-teal-400 rounded-full flex items-center justify-center text-white font-semibold text-sm shadow-lg shadow-cyan-500/20">
                       {userProfile ? getInitials(userProfile.name) : 'U'}
                     </div>
                   )}
                   <div className="hidden sm:block text-left">
-                    <div className="text-sm font-medium text-slate-800">
+                    <div className="text-sm font-medium text-white">
                       {userProfile?.name || 'Loading...'}
                     </div>
-                    <div className="text-xs text-slate-500">Premium Plan</div>
+                    <div className="text-xs text-cyan-300">Premium Plan</div>
                   </div>
                 </button>
 
@@ -1096,11 +1096,11 @@ const Dashboard = () => {
                       initial={{ opacity: 0, y: 10, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      className="absolute right-0 top-full mt-2 w-64 bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 overflow-hidden z-50"
+                      className="absolute right-0 top-full mt-2 w-64 bg-[#132F4C] backdrop-blur-xl rounded-2xl shadow-xl border border-cyan-500/20 overflow-hidden z-50"
                     >
-                      <div className="p-4 border-b border-white/20">
-                        <div className="text-sm font-semibold text-slate-800">{userProfile?.email}</div>
-                        <div className="text-xs text-slate-500">Professional Plan</div>
+                      <div className="p-4 border-b border-cyan-500/10">
+                        <div className="text-sm font-semibold text-white">{userProfile?.email}</div>
+                        <div className="text-xs text-cyan-300">Professional Plan</div>
                       </div>
                       <div className="p-2">
                         <button 
@@ -1108,20 +1108,20 @@ const Dashboard = () => {
                             setUserMenuOpen(false);
                             setIsProfileModalOpen(true);
                           }}
-                          className="flex items-center gap-3 w-full p-3 rounded-xl text-slate-600 hover:bg-white/50 transition"
+                          className="flex items-center gap-3 w-full p-3 rounded-xl text-slate-300 hover:bg-white/5 hover:text-cyan-300 transition"
                         >
                           <Camera className="w-4 h-4" />
                           Update Photo
                         </button>
-                        <button className="flex items-center gap-3 w-full p-3 rounded-xl text-slate-600 hover:bg-white/50 transition">
+                        <button className="flex items-center gap-3 w-full p-3 rounded-xl text-slate-300 hover:bg-white/5 hover:text-cyan-300 transition">
                           <User className="w-4 h-4" />
                           Profile Settings
                         </button>
                       </div>
-                      <div className="p-2 border-t border-white/20">
+                      <div className="p-2 border-t border-cyan-500/10">
                         <button 
                           onClick={handleLogout}
-                          className="flex items-center gap-3 w-full p-3 rounded-xl text-red-600 hover:bg-red-50/50 transition"
+                          className="flex items-center gap-3 w-full p-3 rounded-xl text-red-400 hover:bg-red-500/10 transition"
                         >
                           <LogOut className="w-4 h-4" />
                           Sign Out
@@ -1144,16 +1144,16 @@ const Dashboard = () => {
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-5xl font-bold text-slate-800 mb-4"
+              className="text-4xl md:text-5xl font-bold text-white mb-4"
             >
               Your Digital Presence,
-              <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent"> Reimagined</span>
+              <span className="bg-gradient-to-r from-cyan-400 to-teal-300 bg-clip-text text-transparent"> Reimagined</span>
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-xl text-slate-600 max-w-2xl mx-auto"
+              className="text-xl text-slate-300 max-w-2xl mx-auto"
             >
               Manage your AI digital twins, track leads, and showcase your professional portfolio in one place.
             </motion.p>
@@ -1168,37 +1168,37 @@ const Dashboard = () => {
           >
             <Link
               to="/resume"
-              className="group p-6 bg-white/70 backdrop-blur-sm rounded-2xl border border-white/20 shadow-sm hover:shadow-md hover:bg-white/90 transition"
+              className="group p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-cyan-500/20 shadow-sm hover:shadow-lg hover:shadow-cyan-500/10 hover:bg-white/10 hover:border-cyan-500/30 transition"
             >
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition">
-                  <FileText className="w-6 h-6 text-blue-600" />
+                <div className="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:bg-cyan-500/20 transition">
+                  <FileText className="w-6 h-6 text-cyan-400" />
                 </div>
                 <div className="text-left">
-                  <h3 className="font-semibold text-slate-800">Smart Resume</h3>
-                  <p className="text-sm text-slate-600">AI-powered resume builder</p>
+                  <h3 className="font-semibold text-white">Smart Resume</h3>
+                  <p className="text-sm text-slate-400">AI-powered resume builder</p>
                 </div>
               </div>
             </Link>
 
             <Link
               to="/portfolio"
-              className="group p-6 bg-white/70 backdrop-blur-sm rounded-2xl border border-white/20 shadow-sm hover:shadow-md hover:bg-white/90 transition"
+              className="group p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-teal-500/20 shadow-sm hover:shadow-lg hover:shadow-teal-500/10 hover:bg-white/10 hover:border-teal-500/30 transition"
             >
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition">
-                  <Briefcase className="w-6 h-6 text-purple-600" />
+                <div className="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:bg-teal-500/20 transition">
+                  <Briefcase className="w-6 h-6 text-teal-400" />
                 </div>
                 <div className="text-left">
-                  <h3 className="font-semibold text-slate-800">Portfolio</h3>
-                  <p className="text-sm text-slate-600">Showcase your work</p>
+                  <h3 className="font-semibold text-white">Portfolio</h3>
+                  <p className="text-sm text-slate-400">Showcase your work</p>
                 </div>
               </div>
             </Link>
 
             <Link
               to="/wizard"
-              className="group p-6 bg-gradient-to-br from-primary to-primary/70 rounded-2xl border border-primary/20 shadow-sm hover:shadow-lg hover:scale-[1.02] transition"
+              className="group p-6 bg-gradient-to-br from-cyan-500 to-teal-400 rounded-2xl border border-cyan-400/30 shadow-lg shadow-cyan-500/20 hover:shadow-xl hover:shadow-cyan-500/30 hover:scale-[1.02] transition"
             >
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition">
@@ -1216,16 +1216,16 @@ const Dashboard = () => {
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="text-center py-20 bg-white/70 backdrop-blur-sm rounded-3xl shadow-sm border border-white/20"
+              className="text-center py-20 bg-white/5 backdrop-blur-sm rounded-3xl shadow-sm border border-cyan-500/20"
             >
-              <Sparkles className="w-16 h-16 mx-auto mb-6 text-primary/60" />
-              <h3 className="text-2xl font-bold text-slate-800 mb-4">No Digital Twin Yet</h3>
-              <p className="text-slate-600 text-lg mb-8 max-w-md mx-auto">
+              <Sparkles className="w-16 h-16 mx-auto mb-6 text-cyan-400" />
+              <h3 className="text-2xl font-bold text-white mb-4">No Digital Twin Yet</h3>
+              <p className="text-slate-300 text-lg mb-8 max-w-md mx-auto">
                 Create your first digital twin to start generating leads and engaging with your audience 24/7.
               </p>
               <Link
                 to="/wizard"
-                className="inline-flex items-center gap-3 bg-primary text-white px-8 py-4 rounded-2xl hover:bg-primary/90 transition font-semibold shadow-lg hover:shadow-xl"
+                className="inline-flex items-center gap-3 bg-gradient-to-r from-cyan-500 to-teal-400 text-white px-8 py-4 rounded-2xl hover:from-cyan-600 hover:to-teal-500 transition font-semibold shadow-lg shadow-cyan-500/20 hover:shadow-xl hover:shadow-cyan-500/30"
               >
                 <Plus className="w-5 h-5" />
                 Create Your First Twin
@@ -1240,28 +1240,28 @@ const Dashboard = () => {
                     key={twin._id}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="p-8 bg-white/70 backdrop-blur-sm rounded-3xl shadow-sm border border-white/20 hover:shadow-md transition"
+                    className="p-8 bg-white/5 backdrop-blur-sm rounded-3xl shadow-sm border border-cyan-500/20 hover:shadow-lg hover:shadow-cyan-500/10 hover:border-cyan-500/30 transition"
                   >
                     <div className="flex items-center justify-between mb-6">
                       <div>
-                        <h2 className="text-2xl font-bold text-slate-800">{twin.identity.name}</h2>
-                        <p className="text-slate-600 mt-1">{twin.identity.role}</p>
+                        <h2 className="text-2xl font-bold text-white">{twin.identity.name}</h2>
+                        <p className="text-cyan-300 mt-1">{twin.identity.role}</p>
                       </div>
                       <button
                         onClick={handleDelete}
-                        className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50/50 rounded-xl transition"
+                        className="p-2 text-slate-400 hover:text-red-400 hover:bg-red-500/10 rounded-xl transition"
                       >
                         <Trash2 className="w-5 h-5" />
                       </button>
                     </div>
                     
-                    <p className="text-slate-700 leading-relaxed mb-6">{twin.identity.bio}</p>
+                    <p className="text-slate-300 leading-relaxed mb-6">{twin.identity.bio}</p>
                     
                     <div className="flex items-center justify-between mb-6">
-                      <div className="flex items-center gap-4 text-sm text-slate-500">
+                      <div className="flex items-center gap-4 text-sm text-slate-400">
                         <span className="flex items-center gap-1">
-                          <Zap className="w-4 h-4 text-green-500" />
-                          Active
+                          <Zap className="w-4 h-4 text-teal-400" />
+                          <span className="text-teal-300">Active</span>
                         </span>
                         <span>Updated {new Date(twin.lastUpdated).toLocaleDateString()}</span>
                       </div>
@@ -1269,14 +1269,16 @@ const Dashboard = () => {
 
                     <div className="flex items-center justify-between">
                       <div className="flex flex-col items-center">
-                        <QRCode 
-                          id={`qr-${twin._id}`} 
-                          value={`https://digitaltwin.techtrekkers.ai/chatbot/${twin._id}`} 
-                          size={100} 
-                        />
+                        <div className="p-2 bg-white rounded-xl">
+                          <QRCode 
+                            id={`qr-${twin._id}`} 
+                            value={`https://digitaltwin.techtrekkers.ai/chatbot/${twin._id}`} 
+                            size={100} 
+                          />
+                        </div>
                         <button
                           onClick={() => downloadQR(twin._id)}
-                          className="mt-3 text-primary hover:text-primary/80 text-sm font-medium flex items-center gap-1"
+                          className="mt-3 text-cyan-400 hover:text-cyan-300 text-sm font-medium flex items-center gap-1"
                         >
                           <Download className="w-3 h-3" />
                           Download QR
@@ -1284,7 +1286,7 @@ const Dashboard = () => {
                       </div>
                       <Link
                         to={`/chatbot/${twin._id}`}
-                        className="flex items-center gap-2 text-slate-600 hover:text-primary transition font-medium"
+                        className="flex items-center gap-2 text-slate-300 hover:text-cyan-400 transition font-medium"
                       >
                         <ExternalLink className="w-4 h-4" />
                         View Live
@@ -1299,31 +1301,31 @@ const Dashboard = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="bg-white/70 backdrop-blur-sm rounded-3xl shadow-sm border border-white/20 overflow-hidden"
+                className="bg-white/5 backdrop-blur-sm rounded-3xl shadow-sm border border-cyan-500/20 overflow-hidden"
               >
-                <div className="p-8 border-b border-white/20">
+                <div className="p-8 border-b border-cyan-500/10">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-                        <Users className="w-6 h-6 text-primary" />
+                      <div className="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center">
+                        <Users className="w-6 h-6 text-cyan-400" />
                       </div>
                       <div>
-                        <h2 className="text-2xl font-bold text-slate-800">Lead Management</h2>
-                        <p className="text-slate-600">Track and manage your generated leads</p>
+                        <h2 className="text-2xl font-bold text-white">Lead Management</h2>
+                        <p className="text-slate-300">Track and manage your generated leads</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
-                      <Filter className="w-4 h-4 text-slate-500" />
+                      <Filter className="w-4 h-4 text-slate-400" />
                       <select
                         value={activeFilter}
                         onChange={(e) => setActiveFilter(e.target.value)}
-                        className="bg-white/50 border border-white/20 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
+                        className="bg-white/5 border border-cyan-500/20 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-cyan-500/30 focus:border-cyan-500/30"
                       >
-                        <option value="all">All Leads</option>
-                        <option value="new">New</option>
-                        <option value="contacted">Contacted</option>
-                        <option value="qualified">Qualified</option>
-                        <option value="converted">Converted</option>
+                        <option value="all" className="bg-[#132F4C]">All Leads</option>
+                        <option value="new" className="bg-[#132F4C]">New</option>
+                        <option value="contacted" className="bg-[#132F4C]">Contacted</option>
+                        <option value="qualified" className="bg-[#132F4C]">Qualified</option>
+                        <option value="converted" className="bg-[#132F4C]">Converted</option>
                       </select>
                     </div>
                   </div>
@@ -1335,18 +1337,18 @@ const Dashboard = () => {
                         key={status}
                         className={`flex items-center gap-3 px-4 py-3 rounded-xl border transition cursor-pointer flex-shrink-0 ${
                           activeFilter === status
-                            ? 'bg-white shadow-sm border-primary/30 ring-2 ring-primary/20'
-                            : 'border-white/30 hover:border-white/50 bg-white/30'
+                            ? 'bg-cyan-500/20 shadow-sm border-cyan-500/50 ring-2 ring-cyan-500/30'
+                            : 'border-cyan-500/10 hover:border-cyan-500/30 bg-white/5'
                         }`}
                         onClick={() => setActiveFilter(status)}
                       >
                         <div className={`w-3 h-3 rounded-full ${
-                          status === 'new' ? 'bg-blue-500' :
-                          status === 'contacted' ? 'bg-purple-500' :
-                          status === 'qualified' ? 'bg-green-500' : 'bg-emerald-500'
+                          status === 'new' ? 'bg-cyan-400' :
+                          status === 'contacted' ? 'bg-teal-400' :
+                          status === 'qualified' ? 'bg-emerald-400' : 'bg-green-400'
                         }`} />
-                        <span className="text-sm font-medium capitalize text-slate-700">{status}</span>
-                        <span className="text-sm text-slate-500">({getStatusCount(status)})</span>
+                        <span className="text-sm font-medium capitalize text-white">{status}</span>
+                        <span className="text-sm text-slate-400">({getStatusCount(status)})</span>
                       </div>
                     ))}
                   </div>
@@ -1357,14 +1359,14 @@ const Dashboard = () => {
                   {isLoadingLeads ? (
                     <div className="flex justify-center items-center py-12">
                       <div className="flex flex-col items-center gap-3">
-                        <div className="w-8 h-8 border-3 border-primary/20 border-t-primary rounded-full animate-spin"></div>
-                        <div className="text-slate-600">Loading leads...</div>
+                        <div className="w-8 h-8 border-3 border-cyan-500/20 border-t-cyan-400 rounded-full animate-spin"></div>
+                        <div className="text-slate-300">Loading leads...</div>
                       </div>
                     </div>
                   ) : filteredLeads.length === 0 ? (
                     <div className="text-center py-12">
-                      <Mail className="w-16 h-16 mx-auto text-slate-300 mb-4" />
-                      <p className="text-slate-500 text-lg">
+                      <Mail className="w-16 h-16 mx-auto text-slate-600 mb-4" />
+                      <p className="text-slate-400 text-lg">
                         {activeFilter === 'all'
                           ? "No leads yet. Share your digital twin to start generating leads!"
                           : `No ${activeFilter} leads found.`}
@@ -1378,11 +1380,11 @@ const Dashboard = () => {
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: index * 0.1 }}
-                          className="group p-6 bg-white/50 rounded-2xl border border-white/30 hover:border-white/50 hover:bg-white/70 transition"
+                          className="group p-6 bg-white/5 rounded-2xl border border-cyan-500/10 hover:border-cyan-500/30 hover:bg-white/10 transition"
                         >
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-4">
-                              <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-xl flex items-center justify-center text-white font-semibold">
+                              <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-teal-400 rounded-xl flex items-center justify-center text-white font-semibold shadow-lg shadow-cyan-500/20">
                                 {(lead.name || "Unknown")
                                   .split(' ')
                                   .map(n => n[0])
@@ -1391,12 +1393,12 @@ const Dashboard = () => {
                               </div>
                               <div>
                                 <div className="flex items-center gap-3 mb-2">
-                                  <h3 className="font-semibold text-slate-800 text-lg">{lead.name}</h3>
+                                  <h3 className="font-semibold text-white text-lg">{lead.name}</h3>
                                   <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(lead.status)}`}>
                                     {lead.status}
                                   </span>
                                 </div>
-                                <div className="flex items-center gap-6 text-sm text-slate-600">
+                                <div className="flex items-center gap-6 text-sm text-slate-300">
                                   <span className="flex items-center gap-2">
                                     <Mail className="w-4 h-4" />
                                     {lead.email}
@@ -1413,7 +1415,7 @@ const Dashboard = () => {
                                   </span>
                                 </div>
                                 {lead.message && (
-                                  <p className="text-slate-700 mt-3 line-clamp-2">{lead.message}</p>
+                                  <p className="text-slate-400 mt-3 line-clamp-2">{lead.message}</p>
                                 )}
                               </div>
                             </div>
@@ -1432,15 +1434,15 @@ const Dashboard = () => {
                                     )
                                   );
                                 }}
-                                className="bg-white border border-white/30 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
+                                className="bg-white/5 border border-cyan-500/20 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-cyan-500/30"
                               >
-                                <option value="new">New</option>
-                                <option value="contacted">Contacted</option>
-                                <option value="qualified">Qualified</option>
-                                <option value="converted">Converted</option>
+                                <option value="new" className="bg-[#132F4C]">New</option>
+                                <option value="contacted" className="bg-[#132F4C]">Contacted</option>
+                                <option value="qualified" className="bg-[#132F4C]">Qualified</option>
+                                <option value="converted" className="bg-[#132F4C]">Converted</option>
                               </select>
                               
-                              <button className="opacity-0 group-hover:opacity-100 text-primary hover:text-primary/80 font-medium transition">
+                              <button className="opacity-0 group-hover:opacity-100 text-cyan-400 hover:text-cyan-300 font-medium transition">
                                 View Details
                               </button>
                             </div>

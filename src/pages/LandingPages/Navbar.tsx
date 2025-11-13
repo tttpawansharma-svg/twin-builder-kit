@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Bot, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import logoImg from "@/Images/ChatGPT_Image_Nov_13__2025__08_06_06_PM-removebg-preview.png"
 
 const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -60,9 +61,9 @@ const Navigation = () => {
               <motion.div 
                 whileHover={{ scale: 1.05, rotate: 5 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative w-11 h-11 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/30 cursor-pointer"
+                className="relative w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg shadow-cyan-500/30 cursor-pointer"
               >
-                <Bot className="w-6 h-6 text-white" />
+                <img src={logoImg} alt="logo" />
                 <motion.div 
                   animate={{ 
                     opacity: [0.3, 0.6, 0.3],
