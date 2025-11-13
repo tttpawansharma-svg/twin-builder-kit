@@ -247,6 +247,7 @@ const FeaturesSection = () => {
           >
             Ready to experience the future of professional networking?
           </motion.p>
+          
           <motion.button
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isCtaInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
@@ -255,7 +256,9 @@ const FeaturesSection = () => {
             whileTap={{ scale: 0.98 }}
             className="group relative px-10 py-5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold text-lg shadow-2xl shadow-cyan-500/30 overflow-hidden"
           >
+            <a href="/signup">
             <span className="relative z-10">Get Started Today</span>
+            </a>
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500"
               initial={{ x: "100%" }}

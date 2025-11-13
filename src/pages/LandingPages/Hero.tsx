@@ -68,6 +68,7 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className="flex flex-col sm:flex-row items-start gap-4"
             >
+              <a href="/signup">
               <Button 
                 size="lg" 
                 className="rounded-full text-base px-10 h-14 font-medium bg-cyan-500 hover:bg-cyan-400 text-white shadow-lg shadow-cyan-500/30"
@@ -75,6 +76,7 @@ const HeroSection = () => {
                 Create Your Twin
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
+              </a>
               <Button 
                 size="lg" 
                 variant="outline"

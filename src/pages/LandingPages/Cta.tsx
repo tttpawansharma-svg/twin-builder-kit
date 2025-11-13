@@ -155,6 +155,7 @@ const CTASection = () => {
               whileTap={{ scale: 0.98 }}
               className="group relative px-12 py-6 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-lg md:text-xl shadow-2xl shadow-cyan-500/40 overflow-hidden"
             >
+              <a href="/signup">
               <span className="relative z-10 flex items-center gap-3">
                 Create Your Digital Twin
                 <motion.div
@@ -168,6 +169,7 @@ const CTASection = () => {
                   <ArrowRight className="w-6 h-6" />
                 </motion.div>
               </span>
+              </a>
               
               {/* Button Hover Effect */}
               <motion.div
