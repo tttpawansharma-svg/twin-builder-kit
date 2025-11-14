@@ -37,7 +37,7 @@ const Landing = () => {
               <Bot className="w-6 h-6 text-white" />
             </motion.div>
             <span className="text-2xl font-semibold tracking-tight text-white">
-              Proptr
+              Digital Twin
             </span>
           </motion.div>
           <motion.div 
@@ -305,10 +305,10 @@ const Landing = () => {
               <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center">
                 <Bot className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold text-white">Proptr</span>
+              <span className="text-xl font-bold text-white">Digital Twin</span>
             </div>
             <p className="text-slate-400">
-              © 2024 Proptr. All rights reserved.
+              © 2024 Digital Twin. All rights reserved.
             </p>
           </div>
         </div>
@@ -551,7 +551,7 @@ const CTASection = () => {
               Ready to Get Started?
             </h2>
             <p className="text-xl text-slate-300 mb-12 max-w-2xl mx-auto">
-              Join thousands of professionals using Proptr to scale their presence
+              Join thousands of professionals using Digital Twin to scale their presence
             </p>
             <Button 
               size="lg" 

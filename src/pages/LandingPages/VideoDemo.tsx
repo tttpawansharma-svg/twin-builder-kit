@@ -131,22 +131,62 @@ const VideoDemo = () => {
         </motion.div>
 
         {/* VIDEO WITH SCROLL ANIMATION */}
-        <motion.div
-          initial={{ opacity: 0, y: 60, scale: 0.95 }}
-          animate={
-            isInView
-              ? { opacity: 1, y: 0, scale: 1 }
-              : { opacity: 0, y: 60, scale: 0.95 }
-          }
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="rounded-3xl overflow-hidden shadow-2xl shadow-cyan-500/20 border border-cyan-500/20"
-        >
-          <video
-            ref={videoRef}
-            src={videoSource}
-            className="w-full h-96 rounded-3xl"
-          ></video>
-        </motion.div>
+        {/* VIDEO WITH SCROLL ANIMATION */}
+<motion.div
+  initial={{ opacity: 0, y: 60, scale: 0.95 }}
+  animate={
+    isInView
+      ? { opacity: 1, y: 0, scale: 1 }
+      : { opacity: 0, y: 60, scale: 0.95 }
+  }
+  transition={{ duration: 0.7, ease: "easeOut" }}
+  className="rounded-3xl overflow-hidden shadow-2xl shadow-cyan-500/20 border border-cyan-500/20"
+>
+  <video
+    ref={videoRef}
+    src={videoSource}
+    autoPlay
+    className="w-full h-96 rounded-3xl"
+  ></video>
+
+  {/* Play / Pause Buttons */}
+  <div className="flex justify-center gap-6 p-4 mt-2
+  bg-white/5 backdrop-blur-xl
+  border border-white/10
+  rounded-2xl
+  shadow-lg shadow-cyan-500/10
+">
+  <button
+    onClick={() => {
+      clearInterval(timerRef.current);
+      videoRef.current.play();
+    }}
+    className="px-6 py-2 rounded-full 
+    bg-cyan-500/20 hover:bg-cyan-500/30 
+    text-cyan-300 font-medium 
+    backdrop-blur-md border border-cyan-400/20 
+    transition-all duration-300 shadow-md"
+  >
+    ▶ Play
+  </button>
+
+  <button
+    onClick={() => {
+      videoRef.current.pause();
+      clearInterval(timerRef.current);
+    }}
+    className="px-6 py-2 rounded-full 
+    bg-red-500/20 hover:bg-red-500/30 
+    text-red-300 font-medium 
+    backdrop-blur-md border border-red-400/20 
+    transition-all duration-300 shadow-md"
+  >
+    ⏸ Pause
+  </button>
+</div>
+
+</motion.div>
+
       </div>
     </section>
   );

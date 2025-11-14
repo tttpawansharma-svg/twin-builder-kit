@@ -138,7 +138,7 @@ const CTASection = () => {
             transition={{ duration: 0.3, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
             className="text-xl md:text-2xl text-slate-400 mb-12 max-w-3xl mx-auto leading-relaxed font-light"
           >
-            Join thousands of professionals using Proptr to scale their presence and never miss an opportunity
+            Join thousands of professionals using Digital Twin to scale their presence and never miss an opportunity
           </motion.p>
 
           {/* CTA Button */}

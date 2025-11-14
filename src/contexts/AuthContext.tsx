@@ -289,7 +289,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       localStorage.setItem('user', JSON.stringify(userData));
 
       toast({
-        title: 'Welcome to Proptr!',
+        title: 'Welcome to Digital Twin!',
         description: 'Your digital twin has been created successfully.',
       });
     } catch (error: any) {
@@ -346,7 +346,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       localStorage.setItem('user', JSON.stringify(userData));
 
       toast({
-        title: 'Welcome to Proptr!',
+        title: 'Welcome to Digital Twin!',
         description: 'Successfully signed in with Google.',
       });
     } catch (error: any) {

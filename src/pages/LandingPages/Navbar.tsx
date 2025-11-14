@@ -78,7 +78,7 @@ const Navigation = () => {
                 />
               </motion.div>
               <span className="text-2xl font-semibold tracking-tight bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
-                Proptr
+               Digital Twin
               </span>
             </motion.div>
             </a>

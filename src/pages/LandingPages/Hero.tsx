@@ -47,7 +47,7 @@ const HeroSection = () => {
             >
               Your AI-Powered
               <br />
-              <span className="text-white">
+              <span className="text-cyan-400">
                 Digital Twin
               </span>
             </motion.h1>

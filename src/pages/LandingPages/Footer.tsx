@@ -75,7 +75,7 @@ const AppFooter = () => {
             </motion.div>
             
             <span className="text-2xl font-semibold tracking-tight bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
-              Proptr
+              Digital Twin
             </span>
           </motion.div>
 
@@ -112,7 +112,7 @@ const AppFooter = () => {
             className="flex flex-col items-center md:items-end gap-2"
           >
             <p className="text-slate-400 text-sm font-light">
-              © 2024 Proptr. All rights reserved.
+              © 2024 Digital Twin. All rights reserved.
             </p>
             <p className="text-slate-500 text-xs">
               Built with 💙 for professionals

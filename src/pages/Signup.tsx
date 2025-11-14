@@ -213,7 +213,7 @@ const Signup = () => {
                 <Bot className="w-12 h-12 text-white" />
               </motion.div>
               <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
-                Join Proptr
+                Join Digital Twin
               </h1>
               <p className="text-gray-400 text-[15px] text-center">
                 Create your digital twin and transform your networking experience
@@ -327,16 +327,16 @@ const Signup = () => {
                 </Button>
               </motion.div>
 
-              <div className="relative my-6">
+              {/* <div className="relative my-6">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-slate-600" />
                 </div>
                 <div className="relative flex justify-center text-sm">
                   <span className="px-2 bg-slate-900 text-gray-400">Or continue with</span>
                 </div>
-              </div>
+              </div> */}
 
-              <GoogleOAuth type="signup" />
+              {/* <GoogleOAuth type="signup" /> */}
 
               <div className="text-center space-y-4 pt-6">
                 <p className="text-gray-400 text-sm">
