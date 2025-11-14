@@ -1,5 +1,6 @@
 import { Bot } from "lucide-react";
 import { motion } from "framer-motion";
+import logoImg from "@/Images/ChatGPT_Image_Nov_13__2025__08_06_06_PM-removebg-preview.png"
 
 const AppFooter = () => {
   return (
@@ -69,8 +70,8 @@ const AppFooter = () => {
               />
               
               {/* Logo Container */}
-              <div className="relative w-11 h-11 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/30">
-                <Bot className="w-6 h-6 text-white" strokeWidth={2} />
+              <div className="relative w-11 h-11 rounded-2xl items-center justify-center shadow-lg shadow-cyan-500/30">
+                <img src={logoImg} alt="logo" />
               </div>
             </motion.div>
             

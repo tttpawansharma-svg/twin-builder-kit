@@ -753,6 +753,8 @@ import { useDigitalTwin } from "@/contexts/DigitalTwinContext";
 import { useToast } from "@/hooks/use-toast";
 import { authService, leadService } from '@/services/api.service';
 import { IMAGE_BASE_URL } from '@/axios.config';
+import logoImg from "@/Images/ChatGPT_Image_Nov_13__2025__08_06_06_PM-removebg-preview.png"
+
 
 interface DigitalTwin {
   _id: string;
@@ -1034,8 +1036,8 @@ const Dashboard = () => {
         <div className="max-w-7xl mx-auto px-8 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-teal-400 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/20">
-                <Bot className="w-6 h-6 text-white" />
+              <div className="w-10 h-10  rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/20">
+                <img src={logoImg} alt="logo" />
               </div>
               <div>
                 <h1 className="text-xl font-bold text-white">DigitalTwin</h1>

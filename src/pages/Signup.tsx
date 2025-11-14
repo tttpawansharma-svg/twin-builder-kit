@@ -10,6 +10,8 @@ import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
 import { GoogleOAuth } from "@/components/GoogleOAuth";
+import logoImg from "@/Images/ChatGPT_Image_Nov_13__2025__08_06_06_PM-removebg-preview.png"
+
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -208,9 +210,9 @@ const Signup = () => {
               <motion.div
                 whileHover={{ rotate: 360, scale: 1.1 }}
                 transition={{ duration: 0.6 }}
-                className="w-24 h-24 rounded-3xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center mb-6 shadow-2xl shadow-cyan-500/25"
+                className="w-24 h-24 rounded-3xl  flex items-center justify-center mb-6 shadow-2xl shadow-cyan-500/25"
               >
-                <Bot className="w-12 h-12 text-white" />
+                <img src={logoImg} alt="logo" />
               </motion.div>
               <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
                 Join Digital Twin
