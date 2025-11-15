@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Bot, Send, User, ArrowLeft, Mail, Building, Star, ExternalLink, Linkedin, Sparkles } from "lucide-react";
+import { Bot, Send, User, ArrowLeft, Mail, Building, Star, ExternalLink, Linkedin, Sparkles, Globe, Briefcase, Users, Share2 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -27,6 +27,7 @@ interface PublicAgent {
     name: string;
     role: string;
     bio: string;
+    tagline?: string;
     profilePicture?: string;
   };
   businesses: { name: string; description: string }[];
@@ -39,6 +40,7 @@ interface PublicAgent {
     linkedin?: string;
     website?: string;
     portfolio?: string;
+    socials?: string[];
   };
 }
 
@@ -67,6 +69,7 @@ const Chatbot = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showLeadModal, setShowLeadModal] = useState(false);
+  const [showLinksModal, setShowLinksModal] = useState(false);
   const [leadData, setLeadData] = useState<LeadFormData>({ name: "", email: "", phone: "", company: "", interest: "" });
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -95,7 +98,7 @@ const Chatbot = () => {
           {
             id: "1",
             role: "assistant",
-            content: `Hello! I'm the digital twin of ${twin.identity.name}, ${twin.identity.role}. I can share insights on my expertise, businesses, and collaboration opportunities. What sparks your interest today?`,
+            content: `Hello! I'm the digital twin of ${twin.identity.name}, ${twin.identity.role}. ${twin.identity.tagline || 'I can share insights on my expertise, businesses, and collaboration opportunities.'} What sparks your interest today?`,
             timestamp: new Date(),
           },
         ]);
@@ -241,11 +244,42 @@ const Chatbot = () => {
     return userProfile?.profilePicture || userProfile?.avatar;
   };
 
-  // Navigate to LinkedIn
-  const navigateToLinkedIn = () => {
-    if (agent?.links?.linkedin) {
-      window.open(agent.links.linkedin, '_blank', 'noopener,noreferrer');
+  // Navigate to external links
+  const navigateToLink = (url: string) => {
+    if (url) {
+      window.open(url, '_blank', 'noopener,noreferrer');
     }
+  };
+
+  // Get domain from URL for display
+  const getDomainFromUrl = (url: string) => {
+    try {
+      const domain = new URL(url).hostname.replace('www.', '');
+      return domain;
+    } catch {
+      return url;
+    }
+  };
+
+  // Get icon for link type
+  const getLinkIcon = (url: string) => {
+    if (url.includes('linkedin.com')) return <Linkedin className="w-4 h-4" />;
+    if (url.includes('github.com')) return <Briefcase className="w-4 h-4" />;
+    if (url.includes('portfolio') || url.includes('teenytechtrek')) return <Briefcase className="w-4 h-4" />;
+    if (url.includes('autoreach')) return <Sparkles className="w-4 h-4" />;
+    if (url.includes('estate')) return <Building className="w-4 h-4" />;
+    if (url.includes('digitaltwin')) return <Users className="w-4 h-4" />;
+    return <Globe className="w-4 h-4" />;
+  };
+
+  // Get link type for styling
+  const getLinkType = (url: string) => {
+    if (url.includes('linkedin.com')) return 'linkedin';
+    if (url.includes('portfolio') || url.includes('teenytechtrek')) return 'portfolio';
+    if (url.includes('autoreach')) return 'product';
+    if (url.includes('estate')) return 'estate';
+    if (url.includes('digitaltwin')) return 'digitaltwin';
+    return 'website';
   };
 
   // Quick Templates
@@ -256,9 +290,14 @@ const Chatbot = () => {
       onClick: () => handleTemplateClick("Tell me about your expertise and background.") 
     },
     { 
-      label: "Opportunities", 
+      label: "Business", 
       icon: <Building className="w-4 h-4" />, 
       onClick: () => handleTemplateClick("What business opportunities do you see for collaboration?") 
+    },
+    { 
+      label: "Projects", 
+      icon: <Briefcase className="w-4 h-4" />, 
+      onClick: () => handleTemplateClick("Tell me about your recent projects and work.") 
     },
     { 
       label: "Connect", 
@@ -350,24 +389,24 @@ const Chatbot = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
-              {/* LinkedIn Button */}
-              {agent.links?.linkedin && (
+            <div className="flex items-center gap-2">
+              {/* Links Button */}
+              {(agent.links?.linkedin || agent.links?.website || agent.links?.portfolio || agent.links?.socials) && (
                 <Button
                   variant="ghost"
                   size={isMobile ? "sm" : "default"}
-                  onClick={navigateToLinkedIn}
+                  onClick={() => setShowLinksModal(true)}
                   className="rounded-full text-slate-300 hover:text-cyan-400 hover:bg-white/5"
-                  aria-label="Visit LinkedIn"
+                  aria-label="View all links"
                 >
-                  <Linkedin className="w-4 h-4 lg:w-5 lg:h-5" />
+                  <Share2 className="w-4 h-4 lg:w-5 lg:h-5" />
                 </Button>
               )}
               
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
                 <span className="text-xs lg:text-sm text-slate-300 font-medium hidden sm:block">
-                  Live Insights
+                  Live
                 </span>
               </div>
             </div>
@@ -463,7 +502,7 @@ const Chatbot = () => {
         className="border-t border-cyan-500/10 backdrop-blur-sm bg-[#0A1929]/50 py-3 lg:py-4 sticky bottom-20 z-30"
       >
         <div className="container mx-auto px-3 lg:px-4">
-          <div className="flex flex-wrap gap-2 justify-center max-w-md mx-auto">
+          <div className="flex flex-wrap gap-2 justify-center max-w-2xl mx-auto">
             {templates.map((template, idx) => (
               <Button
                 key={idx}
@@ -517,6 +556,115 @@ const Chatbot = () => {
           </div>
         </div>
       </motion.div>
+
+      {/* Links Modal */}
+      <Dialog open={showLinksModal} onOpenChange={setShowLinksModal}>
+        <DialogContent className="sm:max-w-md rounded-2xl bg-[#132F4C] border border-cyan-500/20 mx-4">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-white text-lg lg:text-xl">
+              <Share2 className="w-5 h-5 text-cyan-400" />
+              Connect & Explore
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            {/* LinkedIn */}
+            {agent.links?.linkedin && (
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.1 }}
+              >
+                <Button
+                  onClick={() => navigateToLink(agent.links!.linkedin!)}
+                  className="w-full justify-start gap-3 h-14 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/30 text-white transition-all duration-200"
+                >
+                  <Linkedin className="w-5 h-5 text-blue-400" />
+                  <div className="flex-1 text-left">
+                    <div className="font-semibold">LinkedIn</div>
+                    <div className="text-xs text-blue-300/80">Professional Profile</div>
+                  </div>
+                  <ExternalLink className="w-4 h-4" />
+                </Button>
+              </motion.div>
+            )}
+
+            {/* Website */}
+            {agent.links?.website && (
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <Button
+                  onClick={() => navigateToLink(agent.links!.website!)}
+                  className="w-full justify-start gap-3 h-14 bg-cyan-600/20 hover:bg-cyan-600/30 border border-cyan-500/30 text-white transition-all duration-200"
+                >
+                  <Globe className="w-5 h-5 text-cyan-400" />
+                  <div className="flex-1 text-left">
+                    <div className="font-semibold">Website</div>
+                    <div className="text-xs text-cyan-300/80">{getDomainFromUrl(agent.links!.website!)}</div>
+                  </div>
+                  <ExternalLink className="w-4 h-4" />
+                </Button>
+              </motion.div>
+            )}
+
+            {/* Portfolio */}
+            {agent.links?.portfolio && (
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                <Button
+                  onClick={() => navigateToLink(agent.links!.portfolio!)}
+                  className="w-full justify-start gap-3 h-14 bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/30 text-white transition-all duration-200"
+                >
+                  <Briefcase className="w-5 h-5 text-purple-400" />
+                  <div className="flex-1 text-left">
+                    <div className="font-semibold">Portfolio</div>
+                    <div className="text-xs text-purple-300/80">Teeny Tech Trek</div>
+                  </div>
+                  <ExternalLink className="w-4 h-4" />
+                </Button>
+              </motion.div>
+            )}
+
+            {/* Social Links */}
+            {agent.links?.socials && agent.links.socials.map((social, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4 + index * 0.1 }}
+              >
+                <Button
+                  onClick={() => navigateToLink(social)}
+                  className="w-full justify-start gap-3 h-12 bg-teal-600/20 hover:bg-teal-600/30 border border-teal-500/30 text-white transition-all duration-200"
+                >
+                  {getLinkIcon(social)}
+                  <div className="flex-1 text-left">
+                    <div className="font-medium text-sm">{getDomainFromUrl(social)}</div>
+                  </div>
+                  <ExternalLink className="w-4 h-4" />
+                </Button>
+              </motion.div>
+            ))}
+
+            {/* Additional Info */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="text-center pt-4 border-t border-cyan-500/10"
+            >
+              <p className="text-sm text-slate-400">
+                Feel free to explore my work and connect!
+              </p>
+            </motion.div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Lead Capture Modal */}
       <Dialog open={showLeadModal} onOpenChange={setShowLeadModal}>
