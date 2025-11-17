@@ -483,8 +483,8 @@ const StatsSection = () => {
   const isInView = useInView(ref, { once: true });
 
   const stats = [
-    { value: "10K+", label: "Active Digital Twins" },
-    { value: "1M+", label: "Conversations" },
+    { value: "10+", label: "Active Digital Twins" },
+    { value: "1K+", label: "Conversations" },
     { value: "99.9%", label: "Uptime" },
     { value: "4.9/5", label: "User Rating" }
   ];

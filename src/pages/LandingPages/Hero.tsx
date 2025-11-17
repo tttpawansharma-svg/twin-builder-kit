@@ -78,12 +78,19 @@ const HeroSection = () => {
               </Button>
               </a>
               <Button 
-                size="lg" 
+                onClick={() => {
+                  document.getElementById("demoVideo")?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                  });
+                }}
+                size="lg"
                 variant="outline"
                 className="rounded-full text-base px-10 h-14 font-medium border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white"
               >
                 Watch Demo
               </Button>
+
             </motion.div>
           </motion.div>
 

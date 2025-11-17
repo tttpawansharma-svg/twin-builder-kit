@@ -245,25 +245,8 @@ const PreviewSection = () => {
               ))}
             </div>
 
-            {/* CTA Button */}
-            <motion.button
-              initial={{ opacity: 0, y: 20 }}
-              animate={isContentInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.3, delay: 0.35, ease: [0.34, 1.56, 0.64, 1] }}
-              whileHover={{ scale: 1.05, boxShadow: "0 20px 60px rgba(6, 182, 212, 0.4)" }}
-              whileTap={{ scale: 0.98 }}
-              className="group/btn relative mt-8 px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold text-lg shadow-2xl shadow-cyan-500/30 overflow-hidden"
-            >
-              <a href="/signup">
-               <span className="relative z-10">Explore Dashboard</span>
-              </a>
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500"
-                initial={{ x: "100%" }}
-                whileHover={{ x: 0 }}
-                transition={{ duration: 0.3 }}
-              />
-            </motion.button>
+           
+        
           </motion.div>
         </div>
       </div>

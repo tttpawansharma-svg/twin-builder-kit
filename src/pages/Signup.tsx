@@ -175,11 +175,11 @@ const Signup = () => {
               className="flex gap-8 pt-8"
             >
               <div className="text-center">
-                <div className="text-2xl font-bold text-white">50K+</div>
+                <div className="text-2xl font-bold text-white">10+</div>
                 <div className="text-sm text-gray-400">Active Twins</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-white">1M+</div>
+                <div className="text-2xl font-bold text-white">1K+</div>
                 <div className="text-sm text-gray-400">Connections Made</div>
               </div>
               <div className="text-center">
